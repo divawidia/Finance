@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Finance</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="title_home">Home</string>
+    <string name="title_stats">Statistic</string>
+    <string name="title_wallets">Wallet</string>
+    <string name="title_profile">Profile</string>
 </resources>
