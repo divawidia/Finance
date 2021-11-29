@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.0"
+    android:background="#EDEDED">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jumlah Uang"
+            android:textColor="@color/black"
+            android:layout_marginStart="17dp"
+            android:textSize="14sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <EditText
+            android:id="@+id/amountInput"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginEnd="17dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/custom_input"
+            android:hint="Rp. 0"
+            android:inputType="text"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/amount"/>
+
+        <TextView
+            android:id="@+id/categoryLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kategori"
+            android:textColor="@color/black"
+            android:layout_marginStart="17dp"
+            android:textSize="14sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintTop_toBottomOf="@+id/amountInput"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <ImageView
+            android:id="@+id/iconView"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="17dp"
+            android:padding="12dp"
+            android:src="@drawable/ic_wallet"
+            android:background="@drawable/circle_background"
+            android:scaleType="centerCrop"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/categoryLabel"
+            app:tint="@color/black" />
+
+        <TextView
+            android:id="@+id/noteLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Catatan"
+            android:textColor="@color/black"
+            android:layout_marginStart="17dp"
+            android:textSize="14sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintTop_toBottomOf="@+id/iconView"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <EditText
+            android:id="@+id/noteInput"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginEnd="17dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/custom_input"
+            android:hint="Tulis catatan"
+            android:inputType="text"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/noteLabel"/>
+
+        <TextView
+            android:id="@+id/dateLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tanggal"
+            android:textColor="@color/black"
+            android:layout_marginStart="17dp"
+            android:textSize="14sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintTop_toBottomOf="@+id/noteInput"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <EditText
+            android:id="@+id/dateInput"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginEnd="17dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/custom_input"
+            android:hint="Hari ini"
+            android:inputType="text"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/dateLabel"/>
+
+        <TextView
+            android:id="@+id/walletLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pilih Dompet"
+            android:textColor="@color/black"
+            android:layout_marginStart="17dp"
+            android:textSize="14sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintTop_toBottomOf="@+id/dateInput"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <Spinner
+            android:id="@+id/walletInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="17dp"
+            android:layout_marginEnd="17dp"
+            android:layout_marginTop="16dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"
+            android:backgroundTint="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/walletLabel"/>
+
+        <Button
+            android:id="@+id/button_update"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginEnd="17dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Tambah"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/walletInput"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
