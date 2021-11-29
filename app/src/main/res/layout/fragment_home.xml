@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.0"
+    android:background="#EDEDED">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/profile"
+            android:layout_marginTop="17dp"
+            android:layout_marginStart="17dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"/>
+
+        <TextView
+            android:id="@+id/greeting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="10dp"
+            android:text="Halo, Lynn"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toRightOf="@+id/profile_image"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/profile_image"/>
+
+        <TextView
+            android:id="@+id/subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="10dp"
+            android:text="Ayo catat keuanganmu sekarang"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toRightOf="@+id/profile_image"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/greeting"
+            app:layout_constraintBottom_toBottomOf="@+id/profile_image"/>
+
+        <ImageView
+            android:id="@+id/heroLeft"
+            android:layout_width="20dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="17dp"
+            android:src="@drawable/ic_notif"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toRightOf="@+id/profile_image"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/profile_image"
+            app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+            app:tint="@color/black" />
+
+        <TextView
+            android:id="@+id/dompetkuLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginEnd="10dp"
+            android:text="Dompetku"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listDompet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="17dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dompetkuLabel"
+            tools:listitem="@layout/item_dompet"
+            tools:itemCount="1" />
+
+        <ImageView
+            android:id="@+id/dompetkuAdd"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginEnd="17dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toRightOf="@+id/listDompet"
+            app:layout_constraintTop_toBottomOf="@id/dompetkuLabel"
+            android:background="@drawable/dompetku_card_background"
+            android:backgroundTint="@color/white"/>
+
+        <ImageView
+            android:id="@+id/vectorDompet"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="17dp"
+            app:layout_constraintLeft_toLeftOf="@+id/dompetkuAdd"
+            app:layout_constraintTop_toTopOf="@id/dompetkuAdd"
+            app:layout_constraintRight_toRightOf="@+id/dompetkuAdd"
+            app:layout_constraintBottom_toTopOf="@id/textAddDompet"
+            android:background="@drawable/ic_wallet"
+            android:backgroundTint="#00903D"/>
+
+        <TextView
+            android:id="@+id/textAddDompet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tambah\nDompet"
+            android:layout_marginBottom="10dp"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintLeft_toLeftOf="@+id/dompetkuAdd"
+            app:layout_constraintTop_toBottomOf="@id/vectorDompet"
+            app:layout_constraintRight_toRightOf="@+id/dompetkuAdd"
+            app:layout_constraintBottom_toBottomOf="@id/dompetkuAdd"/>
+
+        <TextView
+            android:id="@+id/pengeluaranLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginEnd="10dp"
+            android:text="Pengeluaran"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/listDompet"/>
+
+        <TextView
+            android:id="@+id/pengeluaranShowAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginEnd="17dp"
+            android:text="Lihat Semua >"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="@android:color/darker_gray"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/listDompet"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listPengeluaran"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginEnd="17dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pengeluaranLabel"
+            tools:listitem="@layout/item_pengeluaran"
+            tools:itemCount="1" />
+
+        <TextView
+            android:id="@+id/transaksiLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginEnd="10dp"
+            android:text="Transaksi Terakhir"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/listPengeluaran"/>
+
+        <TextView
+            android:id="@+id/transaksiShowAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginEnd="17dp"
+            android:text="Lihat Semua >"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="@android:color/darker_gray"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/listPengeluaran"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listTransaksi"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginEnd="17dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/transaksiLabel"
+            tools:listitem="@layout/item_transasksi"
+            tools:itemCount="5"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
