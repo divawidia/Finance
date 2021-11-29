@@ -87,17 +87,19 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profile_image"/>
 
-        <ImageView
-            android:id="@+id/dompetkuCard"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginStart="17dp"
-            android:layout_marginEnd="134dp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listDompet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:layout_marginTop="12dp"
+            android:layout_marginStart="17dp"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/dompetkuLabel"
-            android:background="@drawable/dompetku_card_background"/>
+            tools:listitem="@layout/item_dompet"
+            tools:itemCount="1" />
 
         <ImageView
             android:id="@+id/dompetkuAdd"
@@ -107,11 +109,36 @@
             android:layout_marginEnd="17dp"
             android:layout_marginTop="12dp"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/listDompet"
             app:layout_constraintTop_toBottomOf="@id/dompetkuLabel"
             android:background="@drawable/dompetku_card_background"
             android:backgroundTint="@color/white"/>
+
+        <ImageView
+            android:id="@+id/vectorDompet"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="17dp"
+            app:layout_constraintLeft_toLeftOf="@+id/dompetkuAdd"
+            app:layout_constraintTop_toTopOf="@id/dompetkuAdd"
+            app:layout_constraintRight_toRightOf="@+id/dompetkuAdd"
+            app:layout_constraintBottom_toTopOf="@id/textAddDompet"
+            android:background="@drawable/ic_wallet"
+            android:backgroundTint="#00903D"/>
+
+        <TextView
+            android:id="@+id/textAddDompet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tambah\nDompet"
+            android:layout_marginBottom="10dp"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintLeft_toLeftOf="@+id/dompetkuAdd"
+            app:layout_constraintTop_toBottomOf="@id/vectorDompet"
+            app:layout_constraintRight_toRightOf="@+id/dompetkuAdd"
+            app:layout_constraintBottom_toBottomOf="@id/dompetkuAdd"/>
 
         <TextView
             android:id="@+id/pengeluaranLabel"
@@ -127,7 +154,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dompetkuCard"/>
+            app:layout_constraintTop_toBottomOf="@+id/listDompet"/>
 
         <TextView
             android:id="@+id/pengeluaranShowAll"
@@ -143,18 +170,21 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dompetkuCard"/>
+            app:layout_constraintTop_toBottomOf="@+id/listDompet"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listPengeluaran"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:orientation="horizontal"
             android:layout_marginTop="15dp"
             android:layout_marginStart="17dp"
             android:layout_marginEnd="17dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pengeluaranLabel"/>
+            app:layout_constraintTop_toBottomOf="@+id/pengeluaranLabel"
+            tools:listitem="@layout/item_pengeluaran"
+            tools:itemCount="1" />
 
         <TextView
             android:id="@+id/transaksiLabel"
@@ -197,7 +227,9 @@
             android:layout_marginEnd="17dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/transaksiLabel"/>
+            app:layout_constraintTop_toBottomOf="@+id/transaksiLabel"
+            tools:listitem="@layout/item_transasksi"
+            tools:itemCount="5"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -5,12 +5,17 @@
       <map>
         <entry key="..\:/Github/Finance/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.26666666666666666" />
         <entry key="..\:/Github/Finance/app/src/main/res/drawable/dompetku_card_background.xml" value="0.26666666666666666" />
+        <entry key="..\:/Github/Finance/app/src/main/res/drawable/ic__wallet.xml" value="0.26666666666666666" />
         <entry key="..\:/Github/Finance/app/src/main/res/drawable/ic_launcher_background.xml" value="0.26666666666666666" />
         <entry key="..\:/Github/Finance/app/src/main/res/layout/activity_add_category.xml" value="0.25052083333333336" />
         <entry key="..\:/Github/Finance/app/src/main/res/layout/activity_list_category.xml" value="0.25052083333333336" />
         <entry key="..\:/Github/Finance/app/src/main/res/layout/activity_main.xml" value="0.15353260869565216" />
         <entry key="..\:/Github/Finance/app/src/main/res/layout/fragment_home.xml" value="0.264" />
-        <entry key="..\:/Github/Finance/app/src/main/res/layout/fragment_statistic.xml" value="0.176" />
+        <entry key="..\:/Github/Finance/app/src/main/res/layout/fragment_statistic.xml" value="0.264" />
+        <entry key="..\:/Github/Finance/app/src/main/res/layout/item_dompet.xml" value="0.2006340579710145" />
+        <entry key="..\:/Github/Finance/app/src/main/res/layout/item_pengeluaran.xml" value="0.264" />
+        <entry key="..\:/Github/Finance/app/src/main/res/layout/item_pengeluaran_one_line.xml" value="0.72" />
+        <entry key="..\:/Github/Finance/app/src/main/res/layout/item_transasksi.xml" value="0.2982998454404946" />
       </map>
     </option>
   </component>
