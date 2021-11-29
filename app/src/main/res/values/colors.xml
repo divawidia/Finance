@@ -9,26 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#DFDFDF</color>
     <color name="greyText">#B5B5B5</color>
-    <color name="primary">#00903D</color>
-
-    <color name="color1">#FFFCB7</color>
-    <color name="color2">#B7FFBE</color>
-    <color name="color3">#B7FFF2</color>
-    <color name="color4">#FFB7B7</color>
-    <color name="color5">#FFD494</color>
-    <color name="color6">#C6B2FF</color>
-    <color name="color7">#78D881</color>
-    <color name="color8">#71D6C4</color>
-
-    <array name="category_colors">
-        <item>@color/color1</item>
-        <item>@color/color2</item>
-        <item>@color/color3</item>
-        <item>@color/color4</item>
-        <item>@color/color5</item>
-        <item>@color/color6</item>
-        <item>@color/color7</item>
-        <item>@color/color8</item>
-    </array>
-
+    <color name="green">#00903D</color>
+    <color name="bg">#E5E5E5</color>
 </resources>
