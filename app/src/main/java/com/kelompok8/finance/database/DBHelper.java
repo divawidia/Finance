@@ -23,9 +23,9 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE user(id_user INTEGER PRIMARY KEY AUTO INCREMENT, email TEXT, username TEXT, password TEXT, tanggal_lahir TEXT, telepon TEXT)");
-        db.execSQL("CREATE TABLE kategori(id_kategori INTEGER PRIMARY KEY AUTO INCREMENT, nama_kategori TEXT, icon TEXT, warna TEXT)");
-        db.execSQL("CREATE TABLE dompet(id_dompet INTEGER PRIMARY KEY AUTO INCREMENT, nama_dompet TEXT, saldo_awal INTEGER");
-        db.execSQL("CREATE TABLE id_pengeluaran(id_pengeluaran INTEGER PRIMARY KEY AUTO INCREMENT, id_kategori INTEGER, jumlah_pengeluaran INTEGER, tanggal TEXT");
+        db.execSQL("CREATE TABLE kategori(id_kategori INTEGER PRIMARY KEY AUTO INCREMENT, id_user INTEGER, nama_kategori TEXT, icon TEXT, warna TEXT)");
+        db.execSQL("CREATE TABLE dompet(id_dompet INTEGER PRIMARY KEY AUTO INCREMENT, id_user INTEGER, nama_dompet TEXT, saldo_awal INTEGER");
+        db.execSQL("CREATE TABLE id_pengeluaran(id_pengeluaran INTEGER PRIMARY KEY AUTO INCREMENT, id_kategori INTEGER, id_user INTEGER, jumlah_pengeluaran INTEGER, tanggal TEXT");
     }
 
     @Override
