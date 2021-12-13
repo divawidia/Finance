@@ -6,9 +6,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.Group;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,9 +19,15 @@ import com.kelompok8.finance.adapter.PengeluaranAdapter;
 import com.kelompok8.finance.adapter.TransaksiAdapter;
 import com.kelompok8.finance.database.DBHelper;
 import com.kelompok8.finance.model.Pengeluaran;
+import com.kelompok8.finance.ui.profile.EditPasswordActivity;
+import com.kelompok8.finance.ui.profile.EditProfileActivity;
+import com.kelompok8.finance.ui.profile.ProfileActivity;
 import com.kelompok8.finance.ui.stats.StatisticActivity;
+import com.kelompok8.finance.ui.wallets.AddDompetActivity;
 
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -33,10 +41,12 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         getSupportActionBar().hide();
 
-        TextView pengeluaranShow = (TextView) findViewById(R.id.pengeluaranShowAll);
-        TextView transaksiShow = (TextView) findViewById(R.id.transaksiShowAll);
-        TextView emptyPengeluaran = (TextView) findViewById(R.id.pengeluaranNull);
-        TextView emptyTransaksi = (TextView) findViewById(R.id.transaksiNull);
+        TextView pengeluaranShow = findViewById(R.id.pengeluaranShowAll);
+        TextView transaksiShow = findViewById(R.id.transaksiShowAll);
+        TextView emptyPengeluaran = findViewById(R.id.pengeluaranNull);
+        TextView emptyTransaksi = findViewById(R.id.transaksiNull);
+        ImageView addDompet = findViewById(R.id.dompetkuAdd);
+        Group profile = findViewById(R.id.groupProfile);
 
         pengeluaranShow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +58,18 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(HomeActivity.this, StatisticActivity.class));
+            }
+        });
+        addDompet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, AddDompetActivity.class));
+            }
+        });
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
             }
         });
 
