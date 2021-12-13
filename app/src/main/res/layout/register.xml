@@ -8,7 +8,6 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:layout_weight="1"
         android:background="@color/bg"
         android:layout_height="match_parent"
         android:layout_width="match_parent">
@@ -24,7 +23,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="240dp"
         android:background="@drawable/bg_login"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
@@ -38,7 +37,7 @@
             android:textColor="@color/green"
             android:layout_marginStart="34dp"
             android:layout_marginLeft="34dp"
-            android:layout_marginTop="63dp"/>
+            android:layout_marginTop="60dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -55,7 +54,7 @@
             android:textColor="@color/grey"
             android:layout_marginStart="34dp"
             android:layout_marginLeft="34dp"
-            android:layout_marginTop="95dp"/>
+            android:layout_marginTop="90dp"/>
     </LinearLayout>
 
     <LinearLayout

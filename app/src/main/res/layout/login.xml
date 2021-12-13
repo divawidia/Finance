@@ -13,16 +13,16 @@
         android:layout_width="match_parent">
 
         <ImageView
-            android:layout_width="304dp"
-            android:layout_height="282dp"
-            android:src="@drawable/ic_login"
-            android:layout_marginStart="53dp"
+            android:layout_width="280dp"
+            android:layout_height="253dp"
+            android:layout_marginStart="62dp"
             android:layout_marginLeft="53dp"
-            android:layout_marginTop="30dp"/>
+            android:layout_marginTop="30dp"
+            android:src="@drawable/ic_login" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="335dp"
         android:background="@drawable/bg_login"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
@@ -53,7 +53,7 @@
             android:textColor="@color/grey"
             android:layout_marginStart="34dp"
             android:layout_marginLeft="34dp"
-            android:layout_marginTop="95dp"/>
+            android:layout_marginTop="85dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -155,13 +155,13 @@
         android:layout_width="match_parent"
         android:orientation="horizontal">
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="125dp"
             android:layout_height="20dp"
             android:text="Belum punya akun?"
             android:textSize="30px"
             android:textColor="@color/black"
             android:fontFamily="@font/poppins_medium"
-            android:layout_marginStart="120dp"
+            android:layout_marginStart="93dp"
             android:layout_marginLeft="34dp"
             android:layout_marginTop="330dp"/>
     </LinearLayout>
@@ -173,12 +173,12 @@
         android:orientation="horizontal">
         <TextView
             android:layout_width="100dp"
-            android:layout_height="20dp"
+            android:layout_height="25dp"
             android:text="Daftar Sekarang"
             android:textSize="30px"
             android:fontFamily="@font/poppins_medium"
             android:textColor="@color/green"
-            android:layout_marginStart="200dp"
+            android:layout_marginStart="210dp"
             android:layout_marginLeft="34dp"
             android:layout_marginTop="330dp"/>
     </LinearLayout>
