@@ -16,18 +16,27 @@
             android:name=".ui.profile.EditProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity">
+            android:name=".ui.profile.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.wallets.AddDompetActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddCategoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.home.HomeActivity">
-        </activity>
+        <activity android:name=".ui.home.HomeActivity" />
 
-        <activity android:name=".ui.stats.StatisticActivity"></activity>
-        <activity android:name=".AddPengeluaranActivity"></activity>
+        <activity android:name=".ui.stats.StatisticActivity" />
+        <activity android:name=".AddPengeluaranActivity" />
     </application>
 
 </manifest>
