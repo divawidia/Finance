@@ -7,15 +7,15 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.kelompok8.finance.ui.home.HomeFragment"
+        android:name="com.kelompok8.finance.ui.home.HomeActivity"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/activity_home" />
 
     <fragment
         android:id="@+id/navigation_statistic"
-        android:name="com.kelompok8.finance.ui.stats.StatisticFragment"
+        android:name="com.kelompok8.finance.ui.stats.StatisticActivity"
         android:label="@string/title_stats"
-        tools:layout="@layout/fragment_statistic" />
+        tools:layout="@layout/activity_statistic" />
 
     <fragment
         android:id="@+id/navigation_wallets"
