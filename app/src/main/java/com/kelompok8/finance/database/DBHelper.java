@@ -6,10 +6,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kelompok8.finance.ui.home.HomeActivity;
@@ -26,6 +22,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        db.execSQL("CREATE TABLE session(id integer PRIMARY KEY, login text)");
         db.execSQL("CREATE TABLE user(id_user INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, username TEXT, password TEXT, tanggal_lahir TEXT, telepon TEXT)");
         db.execSQL("CREATE TABLE kategori(id_kategori INTEGER PRIMARY KEY AUTOINCREMENT, id_user INTEGER, nama_kategori TEXT, icon TEXT, warna TEXT)");
         db.execSQL("CREATE TABLE dompet(id_dompet INTEGER PRIMARY KEY AUTOINCREMENT, id_user INTEGER, nama_dompet TEXT, saldo_awal INTEGER)");
@@ -142,6 +139,55 @@ public class DBHelper extends SQLiteOpenHelper {
             context.startActivity(intent);
         }else {
             Toasty.error(context, "Update Failed", Toast.LENGTH_SHORT, true).show();
+        }
+    }
+
+    public Boolean checkSession(String sessionValues) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor =db.rawQuery("SELECT * FROM sesion WHERE login = ?", new String[]{sessionValues});
+        if (cursor.getCount() > 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public Boolean upgradeSession(String sessionValues, int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("com/kelompok8/finance/ui/login", sessionValues);
+        long update = db.update("session", contentValues, "id="+id, null);
+        if(update == -1){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    public Boolean insertUser(String strEmail, String username, String password){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("username", username);
+        contentValues.put("password", password);
+        long insert = db.insert("user", null, contentValues);
+        if (insert == -1){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    public Boolean checkLogin(String username, String password){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM user WHERE username = ? AND password = ?", new String[]{username, password});
+        if(cursor.getCount() > 0){
+            return true;
+        }
+        else{
+            return false;
         }
     }
 }

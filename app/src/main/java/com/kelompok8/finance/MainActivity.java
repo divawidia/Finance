@@ -9,6 +9,10 @@ import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.kelompok8.finance.ui.home.HomeActivity;
 import com.kelompok8.finance.ui.stats.StatisticActivity;
+import android.widget.Button;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.kelompok8.finance.database.DBHelper;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -17,6 +21,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 public class MainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
