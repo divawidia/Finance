@@ -183,7 +183,7 @@
             android:textSize="30px"
             android:fontFamily="@font/poppins_medium"
             android:textColor="@color/green"
-            android:layout_marginStart="210dp"
+            android:layout_marginStart="205dp"
             android:layout_marginLeft="34dp"
             android:layout_marginTop="330dp"/>
     </LinearLayout>
