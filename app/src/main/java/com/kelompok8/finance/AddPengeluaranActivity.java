@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,17 +23,26 @@ public class AddPengeluaranActivity extends AppCompatActivity {
     private DBHelper db;
     private Pengeluaran pengeluaran;
     private Button btnSubmit;
+    private ImageView showCategories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_pengeluaran);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00903D")));
         getSupportActionBar().setTitle("Tambah Pengeluaran");
 
         jumlahUang = findViewById(R.id.amountInput);
         catatan = findViewById(R.id.noteInput);
+        showCategories = findViewById(R.id.showCategory);
+        showCategories.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddPengeluaranActivity.this, CategoryActivity.class);
+                startActivity(intent);
+            }
+        });
 
         btnSubmit = (Button) findViewById(R.id.button_update);
         btnSubmit.setOnClickListener(new View.OnClickListener() {

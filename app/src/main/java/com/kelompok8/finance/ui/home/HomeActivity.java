@@ -45,8 +45,16 @@ public class HomeActivity extends AppCompatActivity {
         TextView transaksiShow = findViewById(R.id.transaksiShowAll);
         TextView emptyPengeluaran = findViewById(R.id.pengeluaranNull);
         TextView emptyTransaksi = findViewById(R.id.transaksiNull);
+        ImageView showProfile = findViewById(R.id.profile_image);
         ImageView addDompet = findViewById(R.id.dompetkuAdd);
         Group profile = findViewById(R.id.groupProfile);
+
+        showProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
+            }
+        });
 
         pengeluaranShow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,8 +84,8 @@ public class HomeActivity extends AppCompatActivity {
         DBHelper db = new DBHelper(this);
 
         recyclerViewPengeluaran = (RecyclerView) findViewById(R.id.listPengeluaran);
-        recyclerViewPengeluaran.setLayoutManager(new LinearLayoutManager(this));
-
+        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerViewPengeluaran.setLayoutManager(horizontalLayoutManagaer);
 
         recyclerViewTransaksi = (RecyclerView) findViewById(R.id.listTransaksi);
         recyclerViewTransaksi.setLayoutManager(new LinearLayoutManager(this));

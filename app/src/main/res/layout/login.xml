@@ -138,6 +138,7 @@
         android:layout_width="match_parent"
         android:orientation="horizontal">
         <Button
+            android:id="@+id/masuk"
             android:layout_width="343dp"
             android:layout_height="56dp"
             android:text="MASUK"

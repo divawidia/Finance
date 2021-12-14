@@ -75,6 +75,22 @@
             app:layout_constraintTop_toBottomOf="@+id/categoryLabel"
             app:tint="@color/black" />
 
+        <ImageView
+            android:id="@+id/showCategory"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="17dp"
+            android:padding="12dp"
+            android:src="@drawable/ic_more_horiz"
+            android:background="@drawable/circle_background"
+            android:scaleType="centerCrop"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toRightOf="@+id/iconView"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/categoryLabel"
+            app:tint="@color/black" />
+
         <TextView
             android:id="@+id/noteLabel"
             android:layout_width="wrap_content"

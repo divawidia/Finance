@@ -37,6 +37,7 @@
 
         <activity android:name=".ui.stats.StatisticActivity" />
         <activity android:name=".AddPengeluaranActivity" />
+        <activity android:name=".CategoryActivity" />
     </application>
 
 </manifest>
