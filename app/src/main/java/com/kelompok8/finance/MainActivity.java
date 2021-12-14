@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.login);
         getSupportActionBar().hide();
 
-        Button masukBtn = findViewById(R.id.masuk);
+        Button masukBtn = findViewById(R.id.btnlogin);
 
         masukBtn.setOnClickListener(new View.OnClickListener() {
             @Override

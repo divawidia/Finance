@@ -112,7 +112,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Cursor readKategori() {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = ("SELECT*FROM kategori ORDER BY id DESC");
+        String query = ("SELECT*FROM kategori ORDER BY id_kategori DESC");
         Cursor cursor = db.rawQuery(query, null);
         return cursor;
     }

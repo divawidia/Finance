@@ -39,7 +39,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull CategoryAdapter.ViewHolder holder, int position) {
-//        holder.pengeluaran.setText(categoryHolder.get(position).getIdKategori().toString());
+        holder.pengeluaran.setText(categoryHolder.get(position).getNamaKategori());
 //        holder.amount.setText("Rp " + NumberFormat.getNumberInstance(Locale.US).format(pengeluaranHolder.get(position).getJumlahPengeluaran()));
     }
 
@@ -49,14 +49,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView pengeluaran, amount;
-        ImageView icon;
+        TextView pengeluaran;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             pengeluaran = (TextView) itemView.findViewById(R.id.pengeluaran);
-            amount = (TextView) itemView.findViewById(R.id.amount);
-            icon = (ImageView) itemView.findViewById(R.id.icon);
         }
     }
     public interface TombolAdapterDitekan {
