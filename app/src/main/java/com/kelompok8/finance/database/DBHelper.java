@@ -166,7 +166,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Boolean insertUser(String username, String password){
+    public Boolean insertUser(String strEmail, String username, String password){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("username", username);
