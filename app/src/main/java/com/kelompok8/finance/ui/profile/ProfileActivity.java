@@ -10,7 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.Group;
 
 import com.kelompok8.finance.R;
+import com.kelompok8.finance.database.DBHelper;
 import com.kelompok8.finance.ui.home.HomeActivity;
+import com.kelompok8.finance.ui.login.LoginActivity;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -21,7 +23,9 @@ public class ProfileActivity extends AppCompatActivity {
 
         TextView editProfile = findViewById(R.id.textProfileSetting);
         TextView editPass = findViewById(R.id.textUbahPassword);
+        TextView txvLogout = findViewById(R.id.textKeluar);
 
+        DBHelper db = new DBHelper(this);
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -32,6 +36,13 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ProfileActivity.this, EditPasswordActivity.class));
+            }
+        });
+        txvLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                db.Logout();
+                startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
             }
         });
     }

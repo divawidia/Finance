@@ -27,6 +27,11 @@ public class LoginActivity extends AppCompatActivity {
 
         db = new DBHelper(this);
 
+        if(db.checkSession("ada")){
+            Intent mainIntent = new Intent(LoginActivity.this, HomeActivity.class);
+            startActivity(mainIntent);
+        }
+
         username = findViewById(R.id.edtusername);
         password = findViewById(R.id.edtpassword);
         buttonlogin = findViewById(R.id.btnlogin);

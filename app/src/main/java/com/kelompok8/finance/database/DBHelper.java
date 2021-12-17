@@ -159,7 +159,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Boolean checkSession(String sessionValues) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor =db.rawQuery("SELECT * FROM sesion WHERE login = ?", new String[]{sessionValues});
+        Cursor cursor =db.rawQuery("SELECT * FROM session WHERE login = ?", new String[]{sessionValues});
         if (cursor.getCount() > 0){
             return true;
         }
@@ -190,6 +190,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("username", username);
         contentValues.put("password", password);
         long insert = db.insert("user", null, contentValues);
+        db.execSQL("INSERT INTO dompet (id_user, nama_dompet, saldo_awal) VALUES (1, 'cash', 0)");
         if (insert == 1){
             return false;
         }
@@ -206,6 +207,19 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         else{
             return false;
+        }
+    }
+
+    public Boolean Logout (){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("login","");
+        long update = db.update("session", contentValues, "id="+1, null);
+        if(update == 1){
+            return false;
+        }
+        else{
+            return true;
         }
     }
 }
