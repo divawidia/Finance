@@ -176,7 +176,7 @@
         android:layout_width="match_parent"
         android:orientation="horizontal">
         <TextView
-            android:id="@+id/btnregister"
+            android:id="@+id/txvregister"
             android:layout_width="100dp"
             android:layout_height="25dp"
             android:text="Daftar Sekarang"

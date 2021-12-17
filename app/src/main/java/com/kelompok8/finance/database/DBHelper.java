@@ -158,7 +158,7 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put("com/kelompok8/finance/ui/login", sessionValues);
         long update = db.update("session", contentValues, "id="+id, null);
-        if(update == -1){
+        if(update == 1){
             return false;
         }
         else{
@@ -172,7 +172,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("username", username);
         contentValues.put("password", password);
         long insert = db.insert("user", null, contentValues);
-        if (insert == -1){
+        if (insert == 1){
             return false;
         }
         else{
