@@ -60,7 +60,7 @@ public class StatisticActivity extends AppCompatActivity {
 
         while(cursor.moveToNext()){
             Pengeluaran pengeluaran = new Pengeluaran(cursor.getInt(0),
-                    cursor.getInt(1),
+                    cursor.getString(1),
                     cursor.getInt(2),
                     cursor.getInt(3),
                     cursor.getString(4),

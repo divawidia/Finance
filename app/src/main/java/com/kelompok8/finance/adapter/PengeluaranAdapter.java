@@ -42,7 +42,7 @@ public class PengeluaranAdapter extends RecyclerView.Adapter<PengeluaranAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.pengeluaran.setText(pengeluaranHolder.get(position).getIdKategori().toString());
+        holder.pengeluaran.setText(pengeluaranHolder.get(position).getKategori().toString());
         holder.amount.setText("Rp " + NumberFormat.getNumberInstance(Locale.US).format(pengeluaranHolder.get(position).getJumlahPengeluaran()));
     }
 

@@ -70,7 +70,21 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Cursor readPengeluaran() {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = ("SELECT*FROM pengeluaran ORDER BY id_pengeluaran DESC");
+        String query = ("SELECT id_pengeluaran,  kategori.nama_kategori, pengeluaran.id_user, jumlah_pengeluaran, catatan, tanggal \n" +
+                "FROM pengeluaran \n" +
+                "INNER JOIN kategori ON kategori.id_kategori = pengeluaran.id_kategori\n" +
+                "ORDER BY id_pengeluaran DESC");
+        Cursor cursor = db.rawQuery(query, null);
+        return cursor;
+    }
+
+    public Cursor readPengeluaranGByCategory() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = ("SELECT id_pengeluaran,  kategori.nama_kategori, pengeluaran.id_user, SUM(jumlah_pengeluaran), catatan, tanggal \n" +
+                "FROM pengeluaran \n" +
+                "INNER JOIN kategori ON kategori.id_kategori = pengeluaran.id_kategori\n" +
+                "GROUP BY pengeluaran.id_kategori\n" +
+                "ORDER BY id_pengeluaran DESC");
         Cursor cursor = db.rawQuery(query, null);
         return cursor;
     }

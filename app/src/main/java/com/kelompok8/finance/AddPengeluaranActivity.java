@@ -48,7 +48,7 @@ public class AddPengeluaranActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pengeluaran = new Pengeluaran(0, 1, 1,
+                pengeluaran = new Pengeluaran(0, "CatGory", 1,
                         Integer.parseInt(jumlahUang.getText().toString()),
                         catatan.getText().toString(),
                         "14 Desember 2021");
@@ -63,7 +63,7 @@ public class AddPengeluaranActivity extends AppCompatActivity {
 
     private void saveDataToDB(){
         db = new DBHelper(this);
-        db.insertPengeluaran(pengeluaran.getIdKategori(),
+        db.insertPengeluaran(1,
                 pengeluaran.getIdUser(),
                 pengeluaran.getJumlahPengeluaran(),
                 pengeluaran.getCatatan(),

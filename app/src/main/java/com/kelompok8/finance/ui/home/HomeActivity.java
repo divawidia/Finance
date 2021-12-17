@@ -34,6 +34,7 @@ public class HomeActivity extends AppCompatActivity {
     private RecyclerView recyclerViewPengeluaran, recyclerViewTransaksi;
     private SQLiteDatabase sqLiteDatabase;
     private ArrayList<Pengeluaran> pengeluaranHolder = new ArrayList<>();
+    private ArrayList<Pengeluaran> pengeluaranHolder2 = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +107,7 @@ public class HomeActivity extends AppCompatActivity {
 
         while(cursor.moveToNext()){
             Pengeluaran pengeluaran = new Pengeluaran(cursor.getInt(0),
-                    cursor.getInt(1),
+                    cursor.getString(1),
                     cursor.getInt(2),
                     cursor.getInt(3),
                     cursor.getString(4),
@@ -114,7 +115,18 @@ public class HomeActivity extends AppCompatActivity {
             pengeluaranHolder.add(pengeluaran);
         }
 
-        PengeluaranAdapter pengeluaranAdapter = new PengeluaranAdapter(pengeluaranHolder, HomeActivity.this, sqLiteDatabase);
+        Cursor cursor1 = new DBHelper(this).readPengeluaranGByCategory();
+        while(cursor1.moveToNext()){
+            Pengeluaran pengeluaran = new Pengeluaran(cursor1.getInt(0),
+                    cursor1.getString(1),
+                    cursor1.getInt(2),
+                    cursor1.getInt(3),
+                    cursor1.getString(4),
+                    cursor1.getString(5));
+            pengeluaranHolder2.add(pengeluaran);
+        }
+
+        PengeluaranAdapter pengeluaranAdapter = new PengeluaranAdapter(pengeluaranHolder2, HomeActivity.this, sqLiteDatabase);
         recyclerViewPengeluaran.setAdapter((RecyclerView.Adapter) pengeluaranAdapter);
 
 

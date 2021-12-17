@@ -4,12 +4,12 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Pengeluaran implements Parcelable {
-    private Integer id, id_kategori, id_user, jumlah_pengeluaran;
-    private String tanggal, catatan;
+    private Integer id, id_user, jumlah_pengeluaran;
+    private String tanggal, catatan, kategori;
 
-    public Pengeluaran (Integer id, Integer id_kategori, Integer id_user, Integer jumlah_pengeluaran, String catatan, String tanggal){
+    public Pengeluaran (Integer id, String kategori, Integer id_user, Integer jumlah_pengeluaran, String catatan, String tanggal){
         this.id = id;
-        this.id_kategori = id_kategori;
+        this.kategori = kategori;
         this.id_user = id_user;
         this.jumlah_pengeluaran = jumlah_pengeluaran;
         this.catatan = catatan;
@@ -17,7 +17,7 @@ public class Pengeluaran implements Parcelable {
     }
 
     public Integer getId() { return id; }
-    public Integer getIdKategori() { return id_kategori; }
+    public String getKategori() { return kategori; }
     public Integer getIdUser() { return id_user; }
     public Integer getJumlahPengeluaran() { return jumlah_pengeluaran; }
     public String getTanggal() { return tanggal; }
@@ -32,7 +32,7 @@ public class Pengeluaran implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.id);
-        dest.writeInt(this.id_kategori);
+        dest.writeString(this.kategori);
         dest.writeInt(this.id_user);
         dest.writeInt(this.jumlah_pengeluaran);
         dest.writeString(this.catatan);
@@ -41,7 +41,7 @@ public class Pengeluaran implements Parcelable {
 
     protected Pengeluaran(Parcel in) {
         id = in.readInt();
-        id_kategori = in.readInt();
+        kategori = in.readString();
         id_user = in.readInt();
         jumlah_pengeluaran = in.readInt();
         catatan = in.readString();

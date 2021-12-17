@@ -43,7 +43,7 @@ public class TransaksiAdapter extends RecyclerView.Adapter<TransaksiAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.title.setText(pengeluaranHolder.get(position).getCatatan());
-        holder.category.setText(pengeluaranHolder.get(position).getIdKategori().toString());
+        holder.category.setText(pengeluaranHolder.get(position).getKategori().toString());
         holder.date.setText(pengeluaranHolder.get(position).getTanggal());
         holder.amount.setText("Rp " + NumberFormat.getNumberInstance(Locale.US).format(pengeluaranHolder.get(position).getJumlahPengeluaran()));
     }
