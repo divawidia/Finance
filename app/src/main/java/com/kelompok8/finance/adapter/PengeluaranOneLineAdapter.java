@@ -1,9 +1,6 @@
 package com.kelompok8.finance.adapter;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -21,19 +18,18 @@ import com.kelompok8.finance.R;
 import com.kelompok8.finance.database.DBHelper;
 import com.kelompok8.finance.model.Category;
 import com.kelompok8.finance.model.Pengeluaran;
-import com.kelompok8.finance.ui.home.HomeActivity;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class PengeluaranAdapter extends RecyclerView.Adapter<PengeluaranAdapter.ViewHolder>{
+public class PengeluaranOneLineAdapter extends RecyclerView.Adapter<PengeluaranOneLineAdapter.ViewHolder>{
 
     private ArrayList<Pengeluaran> pengeluaranHolder = new ArrayList<>();
     private Context context;
     private RecyclerView recyclerView;
 
-    public PengeluaranAdapter(ArrayList<Pengeluaran> pengeluaranHolder, Context context, SQLiteDatabase sqLiteDatabase) {
+    public PengeluaranOneLineAdapter(ArrayList<Pengeluaran> pengeluaranHolder, Context context, SQLiteDatabase sqLiteDatabase) {
         this.pengeluaranHolder = pengeluaranHolder;
         this.context = context;
     }
@@ -41,13 +37,13 @@ public class PengeluaranAdapter extends RecyclerView.Adapter<PengeluaranAdapter.
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_pengeluaran, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_pengeluaran_one_line, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.pengeluaran.setText(pengeluaranHolder.get(position).getKategori().toString());
+        holder.pengeluaran.setText(pengeluaranHolder.get(position).getKategori().toString()+ " -");
         holder.amount.setText("Rp " + NumberFormat.getNumberInstance(Locale.US).format(pengeluaranHolder.get(position).getJumlahPengeluaran()));
 
         Cursor cursor = new DBHelper(this.context).getWarna(pengeluaranHolder.get(position).getId());
@@ -80,7 +76,7 @@ public class PengeluaranAdapter extends RecyclerView.Adapter<PengeluaranAdapter.
             super(itemView);
             pengeluaran = (TextView) itemView.findViewById(R.id.pengeluaran);
             amount = (TextView) itemView.findViewById(R.id.amount);
-            icon = (ImageView) itemView.findViewById(R.id.icon);
+            icon = (ImageView) itemView.findViewById(R.id.categoryImage);
             card = (CardView) itemView.findViewById(R.id.cardView);
         }
     }

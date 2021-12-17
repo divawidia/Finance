@@ -47,7 +47,7 @@ dependencies {
     //ditambah jyo
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
-    implementation 'com.thebluealliance:spectrum:0.7.1'
+    implementation 'com.thebluealliance:spectrum:0.7.1' //lawas
     implementation 'com.github.GrenderG:Toasty:1.5.2'
     implementation "com.maltaisn:icondialog:3.1.0"
     implementation "com.maltaisn:iconpack-default:1.0.0"

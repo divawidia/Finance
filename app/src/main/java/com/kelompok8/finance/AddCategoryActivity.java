@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +18,7 @@ import com.kelompok8.finance.model.Category;
 import com.maltaisn.icondialog.IconDialog;
 import com.maltaisn.icondialog.IconDialogSettings;
 import com.maltaisn.icondialog.pack.IconPack;
+import com.thebluealliance.spectrum.SpectrumPalette;
 
 import java.util.List;
 
@@ -24,6 +26,7 @@ public class AddCategoryActivity extends AppCompatActivity implements IconDialog
     private Category category;
     private DBHelper db;
     private static final String ICON_DIALOG_TAG = "icon-dialog";
+    private String colorString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,15 @@ public class AddCategoryActivity extends AppCompatActivity implements IconDialog
             iconDialog.show(getSupportFragmentManager(), ICON_DIALOG_TAG);
         });
 
+        SpectrumPalette spectrumPalette = (SpectrumPalette) findViewById(R.id.colorPicker);
+        spectrumPalette.setOnColorSelectedListener(new SpectrumPalette.OnColorSelectedListener() {
+            @Override
+            public void onColorSelected(@ColorInt int color) {
+                colorString = "#" + Integer.toHexString(color).toUpperCase();
+            }
+        });
+
+
         EditText namaCategory = findViewById(R.id.categoryInput);
         Button btnSubmit = (Button) findViewById(R.id.button_update);
         btnSubmit.setOnClickListener(new View.OnClickListener() {
@@ -48,7 +60,7 @@ public class AddCategoryActivity extends AppCompatActivity implements IconDialog
                 category = new Category(0, 1,
                         namaCategory.getText().toString(),
                         "",
-                        "");
+                        colorString);
 
                 saveDataToDB();
 
@@ -87,4 +99,5 @@ public class AddCategoryActivity extends AppCompatActivity implements IconDialog
         sb.delete(sb.length() - 2, sb.length());
         Toast.makeText(this, "Icons selected: " + sb, Toast.LENGTH_SHORT).show();
     }
+
 }

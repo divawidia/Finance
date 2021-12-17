@@ -3,6 +3,8 @@ package com.kelompok8.finance.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.kelompok8.finance.database.DBHelper;
+
 public class Pengeluaran implements Parcelable {
     private Integer id, id_user, jumlah_pengeluaran;
     private String tanggal, catatan, kategori;

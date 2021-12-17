@@ -208,4 +208,12 @@ public class DBHelper extends SQLiteOpenHelper {
             return false;
         }
     }
+
+    public Cursor getWarna(Integer id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = ("SELECT * FROM kategori WHERE id_kategori = " + id);
+        Cursor cursor = db.rawQuery(query, null);
+        return cursor;
+    }
+
 }

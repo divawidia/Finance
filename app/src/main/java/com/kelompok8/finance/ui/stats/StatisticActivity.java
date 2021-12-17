@@ -23,6 +23,7 @@ import android.widget.TextView;
 import com.kelompok8.finance.AddPengeluaranActivity;
 import com.kelompok8.finance.R;
 import com.kelompok8.finance.adapter.PengeluaranAdapter;
+import com.kelompok8.finance.adapter.PengeluaranOneLineAdapter;
 import com.kelompok8.finance.adapter.TransaksiAdapter;
 import com.kelompok8.finance.database.DBHelper;
 import com.kelompok8.finance.model.Pengeluaran;
@@ -33,7 +34,9 @@ import java.util.ArrayList;
 public class StatisticActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewTransaksi;
+    private RecyclerView recyclerViewPengeluaran;
     private ArrayList<Pengeluaran> pengeluaranHolder = new ArrayList<>();
+    private ArrayList<Pengeluaran> pengeluaranHolder2 = new ArrayList<>();
     private SQLiteDatabase sqLiteDatabase;
 
     @Override
@@ -68,7 +71,30 @@ public class StatisticActivity extends AppCompatActivity {
             pengeluaranHolder.add(pengeluaran);
         }
 
-        TransaksiAdapter transaksiAdapter = new TransaksiAdapter(pengeluaranHolder, StatisticActivity.this, sqLiteDatabase);
-        recyclerViewTransaksi.setAdapter((RecyclerView.Adapter) transaksiAdapter);
+        TransaksiAdapter pengeluaranAdapter = new TransaksiAdapter(pengeluaranHolder, StatisticActivity.this, sqLiteDatabase);
+        recyclerViewTransaksi.setAdapter((RecyclerView.Adapter) pengeluaranAdapter);
+
+
+        //code spacer
+
+
+        recyclerViewPengeluaran = (RecyclerView) findViewById(R.id.listPengeluaran);
+        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(StatisticActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerViewPengeluaran.setLayoutManager(horizontalLayoutManagaer);
+
+        Cursor cursor2 = new DBHelper(this).readPengeluaranGByCategory();
+
+        while(cursor2.moveToNext()){
+            Pengeluaran pengeluaran = new Pengeluaran(cursor2.getInt(0),
+                    cursor2.getString(1),
+                    cursor2.getInt(2),
+                    cursor2.getInt(3),
+                    cursor2.getString(4),
+                    cursor2.getString(5));
+            pengeluaranHolder2.add(pengeluaran);
+        }
+
+        PengeluaranOneLineAdapter pengeluaranOneLineAdapter = new PengeluaranOneLineAdapter(pengeluaranHolder2, StatisticActivity.this, sqLiteDatabase);
+        recyclerViewPengeluaran.setAdapter((RecyclerView.Adapter) pengeluaranOneLineAdapter);
     }
 }
