@@ -22,7 +22,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE session(id INTEGER PRIMARY KEY AUTOINCREMENT, login TEXT)");
+        db.execSQL("CREATE TABLE session(id INTEGER PRIMARY KEY AUTOINCREMENT,username TEXT, password TEXT, login TEXT)");
+        db.execSQL("INSERT INTO session(id, login) VALUES(1, 'kosong')");
         db.execSQL("CREATE TABLE user(id_user INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, username TEXT, password TEXT, tanggal_lahir TEXT, telepon TEXT)");
         db.execSQL("CREATE TABLE kategori(id_kategori INTEGER PRIMARY KEY AUTOINCREMENT, id_user INTEGER, nama_kategori TEXT, icon TEXT, warna TEXT)");
         db.execSQL("CREATE TABLE dompet(id_dompet INTEGER PRIMARY KEY AUTOINCREMENT, id_user INTEGER, nama_dompet TEXT, saldo_awal INTEGER)");
@@ -167,10 +168,12 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Boolean upgradeSession(String sessionValues, int id){
+    public Boolean upgradeSession(String sessionValues, int id, String username, String password){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("login", sessionValues);
+        contentValues.put("username", username);
+        contentValues.put("password", password);
         long update = db.update("session", contentValues, "id="+id, null);
         if(update == 1){
             return false;
@@ -180,9 +183,10 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Boolean insertUser(String strEmail, String username, String password){
+    public Boolean insertUser(String email, String username, String password){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        contentValues.put("email", email);
         contentValues.put("username", username);
         contentValues.put("password", password);
         long insert = db.insert("user", null, contentValues);

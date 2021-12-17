@@ -33,8 +33,8 @@
         <activity android:name=".ui.stats.StatisticActivity" />
         <activity android:name=".AddPengeluaranActivity" />
         <activity android:name=".CategoryActivity" />
-        <activity android:name=".ui.login.LoginActivity"/>
-        <activity android:name=".ui.login.RegisterActivity"
+        <activity android:name=".ui.login.RegisterActivity"/>
+        <activity android:name=".ui.login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -40,16 +40,14 @@ public class LoginActivity extends AppCompatActivity {
                 String strPassword = password.getText().toString();
                 Boolean masuk = db.checkLogin(strUsername, strPassword);
                 if (masuk == true){
-                    Boolean updateSession = db.upgradeSession("ada", 1);
-                    if (updateSession == true){
-                        Toast.makeText(getApplicationContext(), "Login berhasil", Toast.LENGTH_SHORT).show();
-                        Intent mainIntent = new Intent(LoginActivity.this, HomeActivity.class);
-                        startActivity(mainIntent);
-
-                    }
+                    Boolean updateSession = db.upgradeSession("ada", 1,  strUsername, strPassword);
+                    Toast.makeText(getApplicationContext(), "Login berhasil", Toast.LENGTH_SHORT).show();
+                    Intent mainIntent = new Intent(LoginActivity.this, HomeActivity.class);
+                    startActivity(mainIntent);
                 }
                 else {
-                    Toast.makeText(getApplicationContext(), "Login gagal", Toast.LENGTH_SHORT).show();                }
+                    Toast.makeText(getApplicationContext(), "Login gagal", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

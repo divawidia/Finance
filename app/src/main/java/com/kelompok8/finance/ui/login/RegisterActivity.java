@@ -35,6 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
         register = findViewById(R.id.btnregis);
         login = findViewById(R.id.btnmasuk);
 
+
         //login
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String strEmail = email.getText().toString();
                 String strUsername = username.getText().toString();
                 String strPassword = password.getText().toString();
-                Boolean daftar = db.insertUser(strEmail, strPassword, strUsername);
+                Boolean daftar = db.insertUser(strEmail, strUsername, strPassword);
                 if (daftar == true){
                     Toast.makeText(getApplicationContext(), "Pendaftaran berhasil", Toast.LENGTH_SHORT).show();
                     Intent loginIntent = new Intent (RegisterActivity.this, LoginActivity.class);
