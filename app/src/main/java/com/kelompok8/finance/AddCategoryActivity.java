@@ -33,9 +33,6 @@ public class AddCategoryActivity extends AppCompatActivity implements IconDialog
     private DBHelper db;
     private static final String ICON_DIALOG_TAG = "icon-dialog";
     private String colorString;
-    private RecyclerView recyclerViewKategori;
-    private ArrayList<Category> kategoriHolder = new ArrayList<>();
-    private SQLiteDatabase sqLiteDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,24 +57,7 @@ public class AddCategoryActivity extends AppCompatActivity implements IconDialog
             }
         });
 
-        DBHelper db = new DBHelper(this);
 
-        recyclerViewKategori = (RecyclerView) findViewById(R.id.listCategory);
-        recyclerViewKategori.setLayoutManager(new GridLayoutManager(this, 4));
-
-        Cursor cursor = new DBHelper(this).readKategori();
-
-        while(cursor.moveToNext()){
-            Category category = new Category(cursor.getInt(0),
-                    cursor.getInt(1),
-                    cursor.getString(2),
-                    cursor.getString(3),
-                    cursor.getString(4));
-            kategoriHolder.add(category);
-        }
-
-        CategoryAdapter categoryAdapter = new CategoryAdapter(kategoriHolder, AddCategoryActivity.this, sqLiteDatabase);
-        recyclerViewKategori.setAdapter((RecyclerView.Adapter) categoryAdapter);
 
 
         EditText namaCategory = findViewById(R.id.categoryInput);
