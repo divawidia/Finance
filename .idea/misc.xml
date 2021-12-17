@@ -7,7 +7,7 @@
         <entry key="..\:/Finance/app/src/main/res/layout/login.xml" value="0.10914855072463768" />
         <entry key="..\:/Finance/app/src/main/res/layout/register.xml" value="0.1" />
         <entry key="..\:/Github/Finance/app/src/main/res/drawable/custom_input.xml" value="0.1" />
-        <entry key="..\:/Github/Finance/app/src/main/res/layout/activity_add_category.xml" value="0.13043478260869565" />
+        <entry key="..\:/Github/Finance/app/src/main/res/layout/activity_add_category.xml" value="0.4" />
         <entry key="..\:/Github/Finance/app/src/main/res/layout/activity_add_pengeluaran.xml" value="0.1" />
         <entry key="..\:/Github/Finance/app/src/main/res/layout/activity_edit_password.xml" value="0.15" />
         <entry key="..\:/Github/Finance/app/src/main/res/layout/activity_edit_profile.xml" value="0.15" />
@@ -16,10 +16,10 @@
         <entry key="..\:/Github/Finance/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Github/Finance/app/src/main/res/layout/activity_statistic.xml" value="0.15" />
         <entry key="..\:/Github/Finance/app/src/main/res/layout/item_category.xml" value="0.1" />
-        <entry key="..\:/Github/Finance/app/src/main/res/layout/item_category_add.xml" value="0.1" />
+        <entry key="..\:/Github/Finance/app/src/main/res/layout/item_category_add.xml" value="0.536" />
         <entry key="..\:/Github/Finance/app/src/main/res/layout/item_dompet.xml" value="0.1" />
         <entry key="..\:/Github/Finance/app/src/main/res/layout/item_pengeluaran.xml" value="0.264" />
-        <entry key="..\:/Github/Finance/app/src/main/res/layout/item_pengeluaran_one_line.xml" value="0.1" />
+        <entry key="..\:/Github/Finance/app/src/main/res/layout/item_pengeluaran_one_line.xml" value="0.4" />
         <entry key="..\:/Github/Finance/app/src/main/res/layout/item_transaksi.xml" value="0.536" />
         <entry key="..\:/Github/Finance/app/src/main/res/layout/login.xml" value="0.15" />
         <entry key="..\:/Github/Finance/app/src/main/res/layout/profile_fragment.xml" value="0.15" />

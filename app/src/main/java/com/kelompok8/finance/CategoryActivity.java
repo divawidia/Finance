@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -49,8 +50,7 @@ public class CategoryActivity extends AppCompatActivity {
         DBHelper db = new DBHelper(this);
 
         recyclerViewKategori = (RecyclerView) findViewById(R.id.listPengeluaran);
-        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(CategoryActivity.this, LinearLayoutManager.HORIZONTAL, false);
-        recyclerViewKategori.setLayoutManager(horizontalLayoutManagaer);
+        recyclerViewKategori.setLayoutManager(new GridLayoutManager(this, 4));
 
         Cursor cursor = new DBHelper(this).readKategori();
 

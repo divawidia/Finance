@@ -2,6 +2,8 @@ package com.kelompok8.finance.adapter;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kelompok8.finance.R;
@@ -38,9 +41,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CategoryAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.pengeluaran.setText(categoryHolder.get(position).getNamaKategori());
 //        holder.amount.setText("Rp " + NumberFormat.getNumberInstance(Locale.US).format(pengeluaranHolder.get(position).getJumlahPengeluaran()));
+//        Log.d("jancok", categoryHolder.get(position).getWarna());
+        int colorSelected = Color.parseColor(categoryHolder.get(position).getWarna());
+        holder.card.setCardBackgroundColor(colorSelected);
     }
 
     @Override
@@ -50,10 +56,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView pengeluaran;
+        CardView card;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             pengeluaran = (TextView) itemView.findViewById(R.id.pengeluaran);
+            card = (CardView) itemView.findViewById(R.id.cardpiw);
         }
     }
     public interface TombolAdapterDitekan {

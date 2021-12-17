@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.0"
@@ -59,6 +60,21 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"/>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listCategory"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginEnd="17dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/categoryLabel"
+            tools:listitem="@layout/item_category"
+            tools:itemCount="1" />
+
         <ImageView
             android:id="@+id/iconView"
             android:layout_width="64dp"
@@ -72,7 +88,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/categoryLabel"
+            app:layout_constraintTop_toBottomOf="@+id/listCategory"
             app:tint="@color/black" />
 
         <ImageView
@@ -88,7 +104,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toRightOf="@+id/iconView"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/categoryLabel"
+            app:layout_constraintTop_toBottomOf="@+id/listCategory"
             app:tint="@color/black" />
 
         <TextView
