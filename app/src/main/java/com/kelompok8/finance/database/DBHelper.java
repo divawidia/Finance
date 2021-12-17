@@ -22,7 +22,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE session(id integer PRIMARY KEY, login text)");
+        db.execSQL("CREATE TABLE session(id INTEGER PRIMARY KEY AUTOINCREMENT, login TEXT)");
         db.execSQL("CREATE TABLE user(id_user INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, username TEXT, password TEXT, tanggal_lahir TEXT, telepon TEXT)");
         db.execSQL("CREATE TABLE kategori(id_kategori INTEGER PRIMARY KEY AUTOINCREMENT, id_user INTEGER, nama_kategori TEXT, icon TEXT, warna TEXT)");
         db.execSQL("CREATE TABLE dompet(id_dompet INTEGER PRIMARY KEY AUTOINCREMENT, id_user INTEGER, nama_dompet TEXT, saldo_awal INTEGER)");
@@ -170,7 +170,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public Boolean upgradeSession(String sessionValues, int id){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("com/kelompok8/finance/ui/login", sessionValues);
+        contentValues.put("login", sessionValues);
         long update = db.update("session", contentValues, "id="+id, null);
         if(update == 1){
             return false;
