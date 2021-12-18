@@ -225,7 +225,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Cursor getWarna(Integer id){
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = ("SELECT * FROM kategori WHERE id_kategori = " + id);
+        String query = ("CREATE TRIGGER simple_trigger2 after delete on database_patient_table begin update database_notes_table; end");
         Cursor cursor = db.rawQuery(query, null);
         return cursor;
     }
