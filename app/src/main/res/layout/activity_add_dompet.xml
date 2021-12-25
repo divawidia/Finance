@@ -11,7 +11,7 @@
     app:layout_constraintVertical_bias="0.0"
     android:background="#EDEDED">
     <TextView
-        android:id="@+id/amount"
+        android:id="@+id/walletName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nama dompet"
@@ -26,7 +26,7 @@
         app:layout_constraintRight_toRightOf="parent"/>
 
     <EditText
-        android:id="@+id/amountInput"
+        android:id="@+id/descInput"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginStart="17dp"
@@ -38,10 +38,10 @@
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@+id/amount"/>
+        app:layout_constraintTop_toBottomOf="@+id/walletName"/>
 
     <TextView
-        android:id="@+id/noteLabel"
+        android:id="@+id/jumlahLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Jumlah uang"
@@ -51,12 +51,12 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintTop_toBottomOf="@+id/amountInput"
+        app:layout_constraintTop_toBottomOf="@+id/descInput"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
     <EditText
-        android:id="@+id/noteInput"
+        android:id="@+id/jumlahInput"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginStart="17dp"
@@ -68,10 +68,10 @@
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@+id/noteLabel"/>
+        app:layout_constraintTop_toBottomOf="@+id/jumlahLabel"/>
 
     <Button
-        android:id="@+id/button_update"
+        android:id="@+id/buttonAddWallet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -81,7 +81,7 @@
         android:gravity="center"
         android:text="Tambah"
         android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@+id/noteInput"
+        app:layout_constraintTop_toBottomOf="@+id/jumlahInput"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 

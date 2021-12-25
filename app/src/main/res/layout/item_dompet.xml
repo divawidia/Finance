@@ -8,20 +8,22 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        app:cardCornerRadius="8dp"
+        app:cardCornerRadius="15dp"
+        android:layout_margin="10dp"
         android:background="@drawable/dompetku_card_background"
-        android:id="@+id/data_vaksin"
+        android:id="@+id/cardDompet"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:cardBackgroundColor="#00AB48">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/pengeluaran"
+                android:id="@+id/textNamaDompet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="26dp"
@@ -34,10 +36,10 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/amount"/>
+                app:layout_constraintBottom_toTopOf="@+id/textJumlah"/>
 
             <TextView
-                android:id="@+id/amount"
+                android:id="@+id/textJumlah"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rp. 16,200,000"
@@ -50,7 +52,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/pengeluaran"
+                app:layout_constraintTop_toBottomOf="@+id/textNamaDompet"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

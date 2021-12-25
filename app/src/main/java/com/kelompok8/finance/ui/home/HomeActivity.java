@@ -17,9 +17,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kelompok8.finance.R;
+import com.kelompok8.finance.adapter.DompetAdapter;
 import com.kelompok8.finance.adapter.PengeluaranAdapter;
 import com.kelompok8.finance.adapter.TransaksiAdapter;
 import com.kelompok8.finance.database.DBHelper;
+import com.kelompok8.finance.model.Dompet;
 import com.kelompok8.finance.model.Pengeluaran;
 import com.kelompok8.finance.model.User;
 import com.kelompok8.finance.ui.profile.EditPasswordActivity;
@@ -34,10 +36,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerViewPengeluaran, recyclerViewTransaksi;
+    private RecyclerView recyclerViewPengeluaran, recyclerViewTransaksi, recyclerViewDompet;
     private SQLiteDatabase sqLiteDatabase;
     private ArrayList<Pengeluaran> pengeluaranHolder = new ArrayList<>();
     private ArrayList<Pengeluaran> pengeluaranHolder2 = new ArrayList<>();
+    private ArrayList<Dompet> dompetHolder = new ArrayList<>();
     private User user;
     private DBHelper dbHelper;
     int idUser;
@@ -81,15 +84,10 @@ public class HomeActivity extends AppCompatActivity {
         ImageView addDompet = findViewById(R.id.dompetkuAdd);
         Group profile = findViewById(R.id.groupProfile);
 
-//        Intent intent = getIntent();
-//        user = (User) intent.getSerializableExtra("user");
-//        username.setText(user.getUsername());
-
         showProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(HomeActivity.this, ProfileActivity.class);
-//                intent1.putExtra("user", user);
                 startActivity(intent1);
             }
         });
@@ -119,11 +117,13 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        DBHelper db = new DBHelper(this);
-
         recyclerViewPengeluaran = (RecyclerView) findViewById(R.id.listPengeluaran);
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL, false);
         recyclerViewPengeluaran.setLayoutManager(horizontalLayoutManagaer);
+
+        recyclerViewDompet = (RecyclerView) findViewById(R.id.listDompet);
+        LinearLayoutManager horizontalLayoutDompet = new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerViewDompet.setLayoutManager(horizontalLayoutDompet);
 
         recyclerViewTransaksi = (RecyclerView) findViewById(R.id.listTransaksi);
         recyclerViewTransaksi.setLayoutManager(new LinearLayoutManager(this));
@@ -162,6 +162,9 @@ public class HomeActivity extends AppCompatActivity {
                     cursor1.getString(5));
             pengeluaranHolder2.add(pengeluaran);
         }
+
+        DompetAdapter dompetAdapter = new DompetAdapter(HomeActivity.this, dbHelper.getDompet(idUser));
+        recyclerViewDompet.setAdapter(dompetAdapter);
 
         PengeluaranAdapter pengeluaranAdapter = new PengeluaranAdapter(pengeluaranHolder2, HomeActivity.this, sqLiteDatabase);
         recyclerViewPengeluaran.setAdapter((RecyclerView.Adapter) pengeluaranAdapter);

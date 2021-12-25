@@ -8,8 +8,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
+import com.kelompok8.finance.model.Dompet;
 import com.kelompok8.finance.model.User;
 import com.kelompok8.finance.ui.home.HomeActivity;
+
+import java.util.ArrayList;
 
 import es.dmoral.toasty.Toasty;
 
@@ -287,6 +290,25 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
+    public Dompet checkNamaDompet(int id, String nama){
+        Dompet dompet = null;
+        try {
+            SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM dompet WHERE id_user = " +id+ " AND nama_dompet = ?", new String[]{nama});
+            if (cursor.moveToFirst()){
+                dompet = new Dompet();
+                dompet.setId_dompet(cursor.getInt(0));
+                dompet.setId_user(cursor.getInt(1));
+                dompet.setNama_dompet(cursor.getString(2));
+                dompet.setSaldo_awal(cursor.getInt(3));
+            }
+        }catch (Exception e){
+            dompet = null;
+        }
+        return dompet;
+
+    }
+
     public User findUser(int id){
         User user = null;
         try {
@@ -311,6 +333,31 @@ public class DBHelper extends SQLiteOpenHelper {
     public void updateUser(ContentValues contentValues, Integer id){
         SQLiteDatabase db =getWritableDatabase();
         db.update("user", contentValues, "id_user = " +id, null);
+    }
+
+    public void addDompet(ContentValues contentValues){
+        SQLiteDatabase db =getWritableDatabase();
+        db.insert("dompet", null, contentValues);
+    }
+
+    public ArrayList<Dompet> getDompet(int id) {
+        ArrayList<Dompet> arrayList = new ArrayList<>();
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery("SELECT * FROM dompet WHERE id_user = "+id, null);
+
+        //looping semua baris dan menambahkan ke list
+        if (cursor.moveToFirst()){
+            do {
+                Dompet dompet = new Dompet();
+                dompet.setId_dompet(cursor.getInt(0));
+                dompet.setId_user(cursor.getInt(1));
+                dompet.setNama_dompet(cursor.getString(2));
+                dompet.setSaldo_awal(cursor.getInt(3));
+                arrayList.add(dompet);
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        return arrayList;
     }
 
     public Boolean Logout (){
