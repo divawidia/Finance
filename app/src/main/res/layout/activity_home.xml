@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="10dp"
-            android:text="Halo, Lynn"
+            android:text="Halo, "
             android:textSize="14sp"
             android:textStyle="bold"
             android:textColor="@color/black"
@@ -41,6 +41,19 @@
             app:layout_constraintLeft_toRightOf="@+id/profile_image"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@+id/profile_image"/>
+
+        <TextView
+            android:id="@+id/textUsernameHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lynn"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toRightOf="@+id/greeting"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/greeting"/>
 
         <TextView
             android:id="@+id/subtitle"

@@ -1,9 +1,11 @@
 package com.kelompok8.finance.ui.home;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,6 +21,7 @@ import com.kelompok8.finance.adapter.PengeluaranAdapter;
 import com.kelompok8.finance.adapter.TransaksiAdapter;
 import com.kelompok8.finance.database.DBHelper;
 import com.kelompok8.finance.model.Pengeluaran;
+import com.kelompok8.finance.model.User;
 import com.kelompok8.finance.ui.profile.EditPasswordActivity;
 import com.kelompok8.finance.ui.profile.EditProfileActivity;
 import com.kelompok8.finance.ui.profile.ProfileActivity;
@@ -35,6 +38,9 @@ public class HomeActivity extends AppCompatActivity {
     private SQLiteDatabase sqLiteDatabase;
     private ArrayList<Pengeluaran> pengeluaranHolder = new ArrayList<>();
     private ArrayList<Pengeluaran> pengeluaranHolder2 = new ArrayList<>();
+    private User user;
+    private DBHelper dbHelper;
+    int idUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,18 +48,49 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         getSupportActionBar().hide();
 
+        idUser = this.getSharedPreferences("login_session", 0).getInt("key_id", 0);
+        dbHelper = new DBHelper(this);
+
+        try {
+            Cursor cursor = (Cursor) dbHelper.getUserLogin(idUser);
+            cursor.moveToLast();
+            user =new User(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    cursor.getString(4),
+                    cursor.getString(5)
+            );
+        }catch (Exception e){
+            Log.e("error user", "Error:" + e.getMessage());
+            return;
+        }
+
         TextView pengeluaranShow = findViewById(R.id.pengeluaranShowAll);
         TextView transaksiShow = findViewById(R.id.transaksiShowAll);
         TextView emptyPengeluaran = findViewById(R.id.pengeluaranNull);
         TextView emptyTransaksi = findViewById(R.id.transaksiNull);
+
+        TextView username = findViewById(R.id.textUsernameHome);
+        username.setText(user.getUsername());
+
         ImageView showProfile = findViewById(R.id.profile_image);
+
+
         ImageView addDompet = findViewById(R.id.dompetkuAdd);
         Group profile = findViewById(R.id.groupProfile);
+
+//        Intent intent = getIntent();
+//        user = (User) intent.getSerializableExtra("user");
+//        username.setText(user.getUsername());
 
         showProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
+                Intent intent1 = new Intent(HomeActivity.this, ProfileActivity.class);
+//                intent1.putExtra("user", user);
+                startActivity(intent1);
             }
         });
 

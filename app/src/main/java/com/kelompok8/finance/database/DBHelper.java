@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
+import com.kelompok8.finance.model.User;
 import com.kelompok8.finance.ui.home.HomeActivity;
 
 import es.dmoral.toasty.Toasty;
@@ -39,6 +40,14 @@ public class DBHelper extends SQLiteOpenHelper {
     public void insert() {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+    }
+
+    public Cursor login(String username_login, String password_login){
+        SQLiteDatabase db=this.getReadableDatabase();
+        User user;
+        Cursor cursor = db.rawQuery("SELECT * FROM user WHERE username = '"+ username_login + "' AND password = '"+ password_login +"'", null);
+
+        return cursor;
     }
 
 //    public Cursor read() {
@@ -183,6 +192,13 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
+    public Cursor getUserLogin(int idUser){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = ("SELECT*FROM user WHERE id_user = "+idUser);
+        Cursor cursor = db.rawQuery(query, null);
+        return cursor;
+    }
+
     public Boolean insertUser(String email, String username, String password){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -199,15 +215,102 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Boolean checkLogin(String username, String password){
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM user WHERE username = ? AND password = ?", new String[]{username, password});
-        if(cursor.getCount() > 0){
-            return true;
+//    public Boolean checkLogin(String username, String password){
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        Cursor cursor = db.rawQuery("SELECT * FROM user WHERE username = ? AND password = ?", new String[]{username, password});
+//        if(cursor.getCount() > 0){
+//            return true;
+//        }
+//        else{
+//            return false;
+//        }
+//    }
+    public User checkLogin(String username, String password){
+        User user = null;
+        try {
+            SQLiteDatabase db = this.getReadableDatabase();
+            Cursor cursor = db.rawQuery("SELECT * FROM user WHERE username = ? AND password = ?", new String[]{username, password});
+            if(cursor.moveToFirst()){
+                user = new User();
+                user.setIdUser(cursor.getInt(0));
+                user.setEmail(cursor.getString(1));
+                user.setUsername(cursor.getString(2));
+                user.setPassword(cursor.getString(3));
+                user.setTanggal_lahir(cursor.getString(4));
+                user.setTelepon(cursor.getString(5));
+            }
+        }catch (Exception e){
+            user = null;
         }
-        else{
-            return false;
+        return user;
+    }
+
+    public User checkUsername(String username){
+        User user = null;
+        try {
+            SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM user WHERE username = ?", new String[]{username});
+            if (cursor.moveToFirst()){
+                user = new User();
+                user.setIdUser(cursor.getInt(0));
+                user.setEmail(cursor.getString(1));
+                user.setUsername(cursor.getString(2));
+                user.setPassword(cursor.getString(3));
+                user.setTanggal_lahir(cursor.getString(4));
+                user.setTelepon(cursor.getString(5));
+            }
+        }catch (Exception e){
+            user = null;
         }
+        return user;
+
+    }
+
+    public User checkPasswordLama(int id, String password){
+        User user = null;
+        try {
+            SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM user WHERE id_user = " +id+ " AND password = ?", new String[]{password});
+            if (cursor.moveToFirst()){
+                user = new User();
+                user.setIdUser(cursor.getInt(0));
+                user.setEmail(cursor.getString(1));
+                user.setUsername(cursor.getString(2));
+                user.setPassword(cursor.getString(3));
+                user.setTanggal_lahir(cursor.getString(4));
+                user.setTelepon(cursor.getString(5));
+            }
+        }catch (Exception e){
+            user = null;
+        }
+        return user;
+
+    }
+
+    public User findUser(int id){
+        User user = null;
+        try {
+            SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM user WHERE id = ?", new String[]{String.valueOf(id)});
+            if (cursor.moveToFirst()){
+                user = new User();
+                user.setIdUser(cursor.getInt(0));
+                user.setEmail(cursor.getString(1));
+                user.setUsername(cursor.getString(2));
+                user.setPassword(cursor.getString(3));
+                user.setTanggal_lahir(cursor.getString(4));
+                user.setTelepon(cursor.getString(5));
+            }
+        }catch (Exception e){
+            user = null;
+        }
+        return user;
+
+    }
+
+    public void updateUser(ContentValues contentValues, Integer id){
+        SQLiteDatabase db =getWritableDatabase();
+        db.update("user", contentValues, "id_user = " +id, null);
     }
 
     public Boolean Logout (){
