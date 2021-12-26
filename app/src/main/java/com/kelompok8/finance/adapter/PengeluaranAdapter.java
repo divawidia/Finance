@@ -50,7 +50,7 @@ public class PengeluaranAdapter extends RecyclerView.Adapter<PengeluaranAdapter.
         holder.pengeluaran.setText(pengeluaranHolder.get(position).getKategori().toString());
         holder.amount.setText("Rp " + NumberFormat.getNumberInstance(Locale.US).format(pengeluaranHolder.get(position).getJumlahPengeluaran()));
 
-        Cursor cursor = new DBHelper(this.context).getKategoriItem(pengeluaranHolder.get(position).getId());
+        Cursor cursor = new DBHelper(this.context).getKategoriItem(pengeluaranHolder.get(position).getIdCategory());
         Category kategori = null;
 
         while(cursor.moveToNext()){

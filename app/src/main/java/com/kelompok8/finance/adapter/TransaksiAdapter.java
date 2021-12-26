@@ -47,7 +47,7 @@ public class TransaksiAdapter extends RecyclerView.Adapter<TransaksiAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Cursor cursor = new DBHelper(this.context).getKategoriItem(pengeluaranHolder.get(position).getId());
+        Cursor cursor = new DBHelper(this.context).getKategoriItem(pengeluaranHolder.get(position).getIdCategory());
         Category kategori = null;
 
         while(cursor.moveToNext()){
