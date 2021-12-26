@@ -5,8 +5,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.ColorInt;
@@ -17,6 +20,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kelompok8.finance.adapter.CategoryAdapter;
+import com.kelompok8.finance.adapter.IconAdapter;
 import com.kelompok8.finance.database.DBHelper;
 import com.kelompok8.finance.helper.IconPickerHelper;
 import com.kelompok8.finance.model.Category;
@@ -33,6 +37,10 @@ public class AddCategoryActivity extends AppCompatActivity implements IconDialog
     private DBHelper db;
     private static final String ICON_DIALOG_TAG = "icon-dialog";
     private String colorString;
+    private Integer iconPath;
+    private ArrayList<Integer> mIconList;
+    private IconAdapter mIconAdapter;
+    private int idUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +50,7 @@ public class AddCategoryActivity extends AppCompatActivity implements IconDialog
         IconDialog dialog = (IconDialog) getSupportFragmentManager().findFragmentByTag(ICON_DIALOG_TAG);
         IconDialog iconDialog = dialog != null ? dialog
                 : IconDialog.newInstance(new IconDialogSettings.Builder().build());
-
-        Button btn = findViewById(R.id.selectIcon);
-        btn.setOnClickListener(v -> {
-            // Open icon dialog
-            iconDialog.show(getSupportFragmentManager(), ICON_DIALOG_TAG);
-        });
+        idUser = this.getSharedPreferences("login_session", 0).getInt("key_id", 0);
 
         SpectrumPalette spectrumPalette = (SpectrumPalette) findViewById(R.id.colorPicker);
         spectrumPalette.setOnColorSelectedListener(new SpectrumPalette.OnColorSelectedListener() {
@@ -57,17 +60,33 @@ public class AddCategoryActivity extends AppCompatActivity implements IconDialog
             }
         });
 
+        initIconList();
+        Spinner spinnerIcons = findViewById(R.id.spinnerIcon);
+        mIconAdapter = new IconAdapter(this, mIconList);
+        spinnerIcons.setAdapter(mIconAdapter);
 
+        spinnerIcons.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Integer clickedItem = (Integer) parent.getItemAtPosition(position);
+                iconPath = clickedItem;
+//                Toast.makeText(AddCategoryActivity.this, String.valueOf(clickedItem) + " selected", Toast.LENGTH_SHORT).show();
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         EditText namaCategory = findViewById(R.id.categoryInput);
         Button btnSubmit = (Button) findViewById(R.id.button_update);
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                category = new Category(0, 1,
+                category = new Category(0, idUser,
                         namaCategory.getText().toString(),
-                        "",
+                        iconPath,
                         colorString);
 
                 saveDataToDB();
@@ -108,4 +127,11 @@ public class AddCategoryActivity extends AppCompatActivity implements IconDialog
         Toast.makeText(this, "Icons selected: " + sb, Toast.LENGTH_SHORT).show();
     }
 
+    private void initIconList() {
+        mIconList = new ArrayList<>();
+        mIconList.add(new Integer(R.drawable.focus));
+        mIconList.add(new Integer(R.drawable.training));
+        mIconList.add(new Integer(R.drawable.struggle));
+        mIconList.add(new Integer(R.drawable.arm));
+    }
 }

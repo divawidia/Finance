@@ -60,51 +60,30 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/listCategory"
+        <Spinner
+            android:id="@+id/categoryInput"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_marginTop="15dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="17dp"
-            android:layout_marginEnd="17dp"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/categoryLabel"
-            tools:listitem="@layout/item_category"
-            tools:itemCount="1" />
+            android:layout_marginEnd="100dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/categoryLabel"/>
 
-        <ImageView
-            android:id="@+id/iconView"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="17dp"
-            android:padding="12dp"
-            android:src="@drawable/ic_wallet"
-            android:background="@drawable/circle_background"
-            android:scaleType="centerCrop"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/listCategory"
-            app:tint="@color/black" />
 
         <ImageView
             android:id="@+id/showCategory"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:layout_marginTop="8dp"
             android:layout_marginStart="17dp"
             android:padding="12dp"
             android:src="@drawable/ic_more_horiz"
             android:background="@drawable/circle_background"
             android:scaleType="centerCrop"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toRightOf="@+id/iconView"
+            app:layout_constraintLeft_toRightOf="@+id/categoryInput"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/listCategory"
+            app:layout_constraintTop_toTopOf="@+id/categoryInput"
+            app:layout_constraintBottom_toBottomOf="@+id/categoryInput"
             app:tint="@color/black" />
 
         <TextView
@@ -118,7 +97,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintTop_toBottomOf="@+id/iconView"
+            app:layout_constraintTop_toBottomOf="@+id/categoryInput"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"/>
 
@@ -159,6 +138,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="10dp"
             android:layout_marginStart="17dp"
+            android:layout_marginEnd="17dp"
             android:padding="12dp"
             android:drawablePadding="12dp"
             android:background="@drawable/custom_input"
@@ -168,6 +148,7 @@
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
             android:textSize="16sp"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dateLabel"/>
 
         <TextView
@@ -192,9 +173,6 @@
             android:layout_marginStart="17dp"
             android:layout_marginEnd="17dp"
             android:layout_marginTop="16dp"
-            android:background="@android:drawable/btn_dropdown"
-            android:spinnerMode="dropdown"
-            android:backgroundTint="@color/white"
             app:layout_constraintTop_toBottomOf="@+id/walletLabel"/>
 
         <Button

@@ -8,10 +8,12 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,8 +22,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kelompok8.finance.adapter.CategoryAdapter;
+import com.kelompok8.finance.adapter.CategorySelectAdapter;
+import com.kelompok8.finance.adapter.DompetSelectAdapter;
+import com.kelompok8.finance.adapter.IconAdapter;
 import com.kelompok8.finance.database.DBHelper;
 import com.kelompok8.finance.model.Category;
+import com.kelompok8.finance.model.Dompet;
 import com.kelompok8.finance.model.Pengeluaran;
 import com.kelompok8.finance.ui.stats.StatisticActivity;
 
@@ -41,6 +47,13 @@ public class AddPengeluaranActivity extends AppCompatActivity {
     private RecyclerView recyclerViewKategori;
     private ArrayList<Category> kategoriHolder = new ArrayList<>();
     private SQLiteDatabase sqLiteDatabase;
+    private ArrayList<Dompet> mDompetList;
+    private DompetSelectAdapter mDompetAdapter;
+    private ArrayList<Category> mCategoryList;
+    private CategorySelectAdapter mCategoryAdapter;
+    private int idUser;
+    private Integer dompetId, categoryId;
+    String tanggal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +75,8 @@ public class AddPengeluaranActivity extends AppCompatActivity {
             }
         });
 
+
+
         Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
         final int month = calendar.get(Calendar.MONTH);
@@ -77,6 +92,7 @@ public class AddPengeluaranActivity extends AppCompatActivity {
                         month = month + 1;
                         String date = day + "/" + month + "/" + year;
                         dateInput.setText(date);
+                        tanggal = date;
                     }
                 }, year, month, day);
                 datePickerDialog.show();
@@ -84,32 +100,57 @@ public class AddPengeluaranActivity extends AppCompatActivity {
         });
 
         DBHelper db = new DBHelper(this);
+        idUser = this.getSharedPreferences("login_session", 0).getInt("key_id", 0);
+        mDompetList = db.getDompet(idUser);
 
-        recyclerViewKategori = (RecyclerView) findViewById(R.id.listCategory);
-        recyclerViewKategori.setLayoutManager(new GridLayoutManager(this, 4));
+        Spinner spinnerDompets = findViewById(R.id.walletInput);
+        mDompetAdapter = new DompetSelectAdapter(this, mDompetList);
+        spinnerDompets.setAdapter(mDompetAdapter);
 
-        Cursor cursor = new DBHelper(this).readKategori();
+        spinnerDompets.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Dompet clickedItem = (Dompet) parent.getItemAtPosition(position);
+                dompetId = clickedItem.getId_dompet();
+//                Toast.makeText(AddCategoryActivity.this, String.valueOf(clickedItem) + " selected", Toast.LENGTH_SHORT).show();
+            }
 
-        while(cursor.moveToNext()){
-            Category category = new Category(cursor.getInt(0),
-                    cursor.getInt(1),
-                    cursor.getString(2),
-                    cursor.getString(3),
-                    cursor.getString(4));
-            kategoriHolder.add(category);
-        }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
-        CategoryAdapter categoryAdapter = new CategoryAdapter(kategoriHolder, AddPengeluaranActivity.this, sqLiteDatabase);
-        recyclerViewKategori.setAdapter((RecyclerView.Adapter) categoryAdapter);
+            }
+        });
+
+        mCategoryList = db.getKategori(idUser);
+
+        Spinner spinnerCategories = findViewById(R.id.categoryInput);
+        mCategoryAdapter = new CategorySelectAdapter(this, mCategoryList);
+        spinnerCategories.setAdapter(mCategoryAdapter);
+
+        spinnerCategories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                Dompet clickedItem = (Dompet) parent.getItemAtPosition(position);
+//                dompetId = clickedItem.getId_dompet();
+//                Toast.makeText(AddCategoryActivity.this, String.valueOf(clickedItem) + " selected", Toast.LENGTH_SHORT).show();
+                Category clickedItem = (Category) parent.getItemAtPosition(position);
+                categoryId = clickedItem.getId();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         btnSubmit = (Button) findViewById(R.id.button_update);
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pengeluaran = new Pengeluaran(0, "CatGory", 1,
+                pengeluaran = new Pengeluaran(0, "CatGory", idUser,
                         Integer.parseInt(jumlahUang.getText().toString()),
                         catatan.getText().toString(),
-                        "14 Desember 2021");
+                        tanggal, categoryId);
 
                 saveDataToDB();
 
@@ -121,12 +162,10 @@ public class AddPengeluaranActivity extends AppCompatActivity {
 
     private void saveDataToDB(){
         db = new DBHelper(this);
-        db.insertPengeluaran(1,
+        db.insertPengeluaran(pengeluaran.getIdCategory(),
                 pengeluaran.getIdUser(),
                 pengeluaran.getJumlahPengeluaran(),
                 pengeluaran.getCatatan(),
                 pengeluaran.getTanggal());
     }
-
-
 }

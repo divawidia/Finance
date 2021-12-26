@@ -50,20 +50,21 @@ public class PengeluaranAdapter extends RecyclerView.Adapter<PengeluaranAdapter.
         holder.pengeluaran.setText(pengeluaranHolder.get(position).getKategori().toString());
         holder.amount.setText("Rp " + NumberFormat.getNumberInstance(Locale.US).format(pengeluaranHolder.get(position).getJumlahPengeluaran()));
 
-        Cursor cursor = new DBHelper(this.context).getWarna(pengeluaranHolder.get(position).getId());
+        Cursor cursor = new DBHelper(this.context).getKategoriItem(pengeluaranHolder.get(position).getId());
         Category kategori = null;
 
         while(cursor.moveToNext()){
             Category category = new Category(cursor.getInt(0),
                     cursor.getInt(1),
                     cursor.getString(2),
-                    cursor.getString(3),
+                    cursor.getInt(3),
                     cursor.getString(4));
             kategori = category;
         }
 
         int colorSelected = Color.parseColor(kategori.getWarna());
         holder.card.setCardBackgroundColor(colorSelected);
+        holder.icon.setImageResource(kategori.getIcon());
     }
 
     @Override
@@ -80,7 +81,7 @@ public class PengeluaranAdapter extends RecyclerView.Adapter<PengeluaranAdapter.
             super(itemView);
             pengeluaran = (TextView) itemView.findViewById(R.id.pengeluaran);
             amount = (TextView) itemView.findViewById(R.id.amount);
-            icon = (ImageView) itemView.findViewById(R.id.icon);
+            icon = (ImageView) itemView.findViewById(R.id.categoryImage);
             card = (CardView) itemView.findViewById(R.id.cardView);
         }
     }

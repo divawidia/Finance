@@ -43,10 +43,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.pengeluaran.setText(categoryHolder.get(position).getNamaKategori());
-//        holder.amount.setText("Rp " + NumberFormat.getNumberInstance(Locale.US).format(pengeluaranHolder.get(position).getJumlahPengeluaran()));
-//        Log.d("jancok", categoryHolder.get(position).getWarna());
         int colorSelected = Color.parseColor(categoryHolder.get(position).getWarna());
         holder.card.setCardBackgroundColor(colorSelected);
+        holder.icon.setImageResource(categoryHolder.get(position).getIcon());
     }
 
     @Override
@@ -57,11 +56,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView pengeluaran;
         CardView card;
+        ImageView icon;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             pengeluaran = (TextView) itemView.findViewById(R.id.pengeluaran);
             card = (CardView) itemView.findViewById(R.id.cardpiw);
+            icon = (ImageView) itemView.findViewById(R.id.roundedImageView);
         }
     }
     public interface TombolAdapterDitekan {

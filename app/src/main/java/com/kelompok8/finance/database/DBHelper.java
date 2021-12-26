@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
+import com.kelompok8.finance.model.Category;
 import com.kelompok8.finance.model.Dompet;
 import com.kelompok8.finance.model.User;
 import com.kelompok8.finance.ui.home.HomeActivity;
@@ -128,7 +129,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void insertKategori(Integer id_user, String nama_kategori, String icon, String warna) {
+    public void insertKategori(Integer id_user, String nama_kategori, Integer icon, String warna) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("id_user", id_user);
@@ -138,11 +139,32 @@ public class DBHelper extends SQLiteOpenHelper {
         db.insert("kategori", null, contentValues);
     }
 
-    public Cursor readKategori() {
+    public Cursor readKategori(int idUser) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = ("SELECT*FROM kategori ORDER BY id_kategori DESC");
+        String query = ("SELECT*FROM kategori WHERE id_user = "+idUser);
         Cursor cursor = db.rawQuery(query, null);
         return cursor;
+    }
+
+    public ArrayList<Category> getKategori(int idUser) {
+        ArrayList<Category> arrayList = new ArrayList<>();
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery("SELECT*FROM kategori WHERE id_user = "+idUser, null);
+
+        //looping semua baris dan menambahkan ke list
+        if (cursor.moveToFirst()){
+            do {
+                Category category = new Category();
+                category.setId(cursor.getInt(0));
+                category.setIdUser(cursor.getInt(1));
+                category.setNamaKategori(cursor.getString(2));
+                category.setIcon(cursor.getInt(3));
+                category.setWarna(cursor.getString(4));
+                arrayList.add(category);
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        return arrayList;
     }
 
     public void deleteKategori(Integer id) {
@@ -402,9 +424,9 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Cursor getWarna(Integer id){
+    public Cursor getKategoriItem(Integer id){
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = ("CREATE TRIGGER simple_trigger2 after delete on database_patient_table begin update database_notes_table; end");
+        String query = ("SELECT * FROM kategori WHERE id_kategori = " + id);
         Cursor cursor = db.rawQuery(query, null);
         return cursor;
     }

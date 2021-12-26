@@ -29,11 +29,13 @@ public class CategoryActivity extends AppCompatActivity {
     private RecyclerView recyclerViewKategori;
     private ArrayList<Category> kategoriHolder = new ArrayList<>();
     private SQLiteDatabase sqLiteDatabase;
+    private int idUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_category);
+        idUser = this.getSharedPreferences("login_session", 0).getInt("key_id", 0);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00903D")));
@@ -52,13 +54,13 @@ public class CategoryActivity extends AppCompatActivity {
         recyclerViewKategori = (RecyclerView) findViewById(R.id.listPengeluaran);
         recyclerViewKategori.setLayoutManager(new GridLayoutManager(this, 4));
 
-        Cursor cursor = new DBHelper(this).readKategori();
+        Cursor cursor = new DBHelper(this).readKategori(idUser);
 
         while(cursor.moveToNext()){
             Category category = new Category(cursor.getInt(0),
                     cursor.getInt(1),
                     cursor.getString(2),
-                    cursor.getString(3),
+                    cursor.getInt(3),
                     cursor.getString(4));
             kategoriHolder.add(category);
         }

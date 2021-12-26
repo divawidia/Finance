@@ -74,7 +74,7 @@ public class StatisticActivity extends AppCompatActivity {
                     cursor.getInt(2),
                     cursor.getInt(3),
                     cursor.getString(4),
-                    cursor.getString(5));
+                    cursor.getString(5), 0);
             pengeluaranHolder.add(pengeluaran);
         }
 
@@ -97,7 +97,7 @@ public class StatisticActivity extends AppCompatActivity {
                     cursor2.getInt(2),
                     cursor2.getInt(3),
                     cursor2.getString(4),
-                    cursor2.getString(5));
+                    cursor2.getString(5), 0);
             pengeluaranHolder2.add(pengeluaran);
         }
 
