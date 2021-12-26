@@ -10,28 +10,27 @@
         android:layout_height="100dp"
         app:cardCornerRadius="15dp"
         android:layout_margin="10dp"
-        android:background="@drawable/dompetku_card_background"
         android:id="@+id/cardDompet"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:cardBackgroundColor="#00AB48">
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@drawable/dompetku_card_background">
 
             <TextView
                 android:id="@+id/textNamaDompet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="26dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginStart="12dp"
                 android:text="Peliharaan"
                 android:textSize="14sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/white"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -43,12 +42,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rp. 16,200,000"
-                android:layout_marginTop="13dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginBottom="27dp"
                 android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/white"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

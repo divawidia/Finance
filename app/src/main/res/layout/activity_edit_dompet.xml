@@ -26,7 +26,7 @@
         app:layout_constraintRight_toRightOf="parent"/>
 
     <EditText
-        android:id="@+id/descInput"
+        android:id="@+id/editNamaDompet"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginStart="17dp"
@@ -51,12 +51,12 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintTop_toBottomOf="@+id/descInput"
+        app:layout_constraintTop_toBottomOf="@+id/editNamaDompet"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
     <EditText
-        android:id="@+id/jumlahInput"
+        android:id="@+id/editJumlahDompet"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginStart="17dp"
@@ -71,17 +71,32 @@
         app:layout_constraintTop_toBottomOf="@+id/jumlahLabel"/>
 
     <Button
-        android:id="@+id/buttonAddWallet"
+        android:id="@+id/buttonEditWallet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginStart="17dp"
+        android:layout_marginEnd="10dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Edit Dompet"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/editJumlahDompet"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:id="@+id/buttonDeleteWallet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="17dp"
         android:layout_marginEnd="17dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="Tambah"
+        android:text="Hapus Dompet"
         android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@+id/jumlahInput"
+        app:layout_constraintTop_toBottomOf="@+id/buttonEditWallet"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 

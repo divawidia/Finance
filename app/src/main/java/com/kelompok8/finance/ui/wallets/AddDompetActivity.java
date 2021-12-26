@@ -30,9 +30,9 @@ public class AddDompetActivity extends AppCompatActivity {
 
     private User user;
     private DBHelper dbHelper;
-    int idUser;
+    private int idUser;
 
-    String namaDompet, jumlahSaldo;
+    private String namaDompet, jumlahSaldo;
 
     LoginManager session;
 
@@ -79,35 +79,35 @@ public class AddDompetActivity extends AppCompatActivity {
                     editJumlahSaldo.setError("Jumlah dompet  harus diisi!");
                 }else {
 
-                User currentUser = dbHelper.findUser(user.getIdUser());
-                Dompet check = dbHelper.checkNamaDompet(idUser, namaDompet);
+                    User currentUser = dbHelper.findUser(user.getIdUser());
+                    Dompet check = dbHelper.checkNamaDompet(idUser, namaDompet);
 
-                if (check == null){
-                    ContentValues values =new ContentValues();
-                    values.put("id_user", idUser);
-                    values.put("nama_dompet", namaDompet);
-                    values.put("saldo_awal", jumlahSaldo);
-                    dbHelper.addDompet(values);
+                    if (check == null){
+                        ContentValues values =new ContentValues();
+                        values.put("id_user", idUser);
+                        values.put("nama_dompet", namaDompet);
+                        values.put("saldo_awal", jumlahSaldo);
+                        dbHelper.addDompet(values);
 
-                    Toast sukses = Toast.makeText(getApplicationContext(), "Berhasil menambahkan dompet", Toast.LENGTH_SHORT);
-                    sukses.show();
+                        Toast sukses = Toast.makeText(getApplicationContext(), "Berhasil menambahkan dompet", Toast.LENGTH_SHORT);
+                        sukses.show();
 
-                    Intent intent = new Intent(AddDompetActivity.this, HomeActivity.class);
-                    startActivity(intent);
+                        Intent intent = new Intent(AddDompetActivity.this, HomeActivity.class);
+                        startActivity(intent);
+                    }
+                    else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                        builder.setTitle("Error");
+                        builder.setMessage("Nama dompet sudah ada");
+                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        });
+                        builder.show();
+                    }
                 }
-                else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                    builder.setTitle("Error");
-                    builder.setMessage("Nama dompet sudah ada");
-                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.cancel();
-                        }
-                    });
-                    builder.show();
-                }
-            }
             }
         });
 

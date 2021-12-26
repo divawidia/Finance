@@ -360,6 +360,24 @@ public class DBHelper extends SQLiteOpenHelper {
         return arrayList;
     }
 
+    public Cursor getOneDompet(int idDompet){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = ("SELECT*FROM dompet WHERE id_dompet = "+idDompet);
+        Cursor cursor = db.rawQuery(query, null);
+        return cursor;
+    }
+
+    public void updateDompet(ContentValues contentValues, Integer id){
+        SQLiteDatabase db =getWritableDatabase();
+        db.update("dompet", contentValues, "id_dompet = " +id, null);
+    }
+
+    public void deleteOneDompet(int idDompet){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("dompet", "id_dompet = ?", new String[]{String.valueOf(idDompet)});
+        db.close();
+    }
+
     public Boolean Logout (){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();

@@ -1,6 +1,7 @@
 package com.kelompok8.finance.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -19,6 +20,7 @@ import com.kelompok8.finance.database.DBHelper;
 import com.kelompok8.finance.model.Category;
 import com.kelompok8.finance.model.Dompet;
 import com.kelompok8.finance.model.Pengeluaran;
+import com.kelompok8.finance.ui.wallets.EditDompetActivity;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -56,6 +58,17 @@ public class DompetAdapter extends RecyclerView.Adapter<DompetAdapter.ViewHolder
 
         holder.namaDompet.setText(nama_dompet);
         holder.jumlahDompet.setText("Rp " + NumberFormat.getNumberInstance(Locale.US).format(saldo_awal));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //pass record id to next activity to show details of that records
+                Intent intent = new Intent(context, EditDompetActivity.class);
+                intent.putExtra("id_dompet", id);
+                context.startActivity(intent);
+
+            }
+        });
     }
 
     @Override
