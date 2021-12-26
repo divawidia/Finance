@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -43,7 +44,11 @@ public class HomeActivity extends AppCompatActivity {
     private ArrayList<Dompet> dompetHolder = new ArrayList<>();
     private User user;
     private DBHelper dbHelper;
+    private Uri imageUri;
+
     int idUser;
+
+    CircleImageView fotoProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +68,8 @@ public class HomeActivity extends AppCompatActivity {
                     cursor.getString(2),
                     cursor.getString(3),
                     cursor.getString(4),
-                    cursor.getString(5)
+                    cursor.getString(5),
+                    cursor.getString(6)
             );
         }catch (Exception e){
             Log.e("error user", "Error:" + e.getMessage());
@@ -74,17 +80,26 @@ public class HomeActivity extends AppCompatActivity {
         TextView transaksiShow = findViewById(R.id.transaksiShowAll);
         TextView emptyPengeluaran = findViewById(R.id.pengeluaranNull);
         TextView emptyTransaksi = findViewById(R.id.transaksiNull);
+        fotoProfile = findViewById(R.id.profile_image);
 
         TextView username = findViewById(R.id.textUsernameHome);
         username.setText(user.getUsername());
-
-        ImageView showProfile = findViewById(R.id.profile_image);
 
 
         ImageView addDompet = findViewById(R.id.dompetkuAdd);
         Group profile = findViewById(R.id.groupProfile);
 
-        showProfile.setOnClickListener(new View.OnClickListener() {
+        String foto = user.getFoto();
+
+        if (foto == null){
+            fotoProfile.setImageResource(R.drawable.blank_user);
+        }
+        else {
+            imageUri = Uri.parse(foto);
+            fotoProfile.setImageURI(imageUri);
+        }
+
+        fotoProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(HomeActivity.this, ProfileActivity.class);

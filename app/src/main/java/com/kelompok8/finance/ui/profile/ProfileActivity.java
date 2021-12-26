@@ -2,6 +2,7 @@ package com.kelompok8.finance.ui.profile;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,12 +21,18 @@ import com.kelompok8.finance.model.User;
 import com.kelompok8.finance.ui.home.HomeActivity;
 import com.kelompok8.finance.ui.login.LoginActivity;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ProfileActivity extends AppCompatActivity {
     private User user;
     private DBHelper dbHelper;
+    private Uri imageUri;
+
     int idUser;
 
     LoginManager session;
+
+    CircleImageView fotoProfile;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,6 +44,7 @@ public class ProfileActivity extends AppCompatActivity {
         TextView txvLogout = findViewById(R.id.textKeluar);
         TextView username = findViewById(R.id.textUsername);
         TextView email = findViewById(R.id.textEmail);
+        fotoProfile = findViewById(R.id.profile_image);
 
         idUser = this.getSharedPreferences("login_session", 0).getInt("key_id", 0);
         dbHelper = new DBHelper(this);
@@ -50,7 +58,8 @@ public class ProfileActivity extends AppCompatActivity {
                     cursor.getString(2),
                     cursor.getString(3),
                     cursor.getString(4),
-                    cursor.getString(5)
+                    cursor.getString(5),
+                    cursor.getString(6)
             );
         }catch (Exception e){
             Log.e("error user", "Error:" + e.getMessage());
@@ -59,6 +68,16 @@ public class ProfileActivity extends AppCompatActivity {
 
         username.setText(user.getUsername());
         email.setText(user.getEmail());
+
+        String foto = user.getFoto();
+
+        if (foto == null){
+            fotoProfile.setImageResource(R.drawable.blank_user);
+        }
+        else {
+            imageUri = Uri.parse(foto);
+            fotoProfile.setImageURI(imageUri);
+        }
 
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override

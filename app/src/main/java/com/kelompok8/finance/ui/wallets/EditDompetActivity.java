@@ -73,7 +73,8 @@ public class EditDompetActivity extends AppCompatActivity {
                     cursor.getString(2),
                     cursor.getString(3),
                     cursor.getString(4),
-                    cursor.getString(5)
+                    cursor.getString(5),
+                    cursor.getString(6)
             );
         }catch (Exception e){
             Log.e("error user", "Error:" + e.getMessage());
@@ -98,7 +99,7 @@ public class EditDompetActivity extends AppCompatActivity {
                 } else {
                     Dompet check = dbHelper.checkNamaDompet(idUser, namaDompet);
 
-                    if (check == null) {
+                    if (check != null) {
                         ContentValues values = new ContentValues();
                         values.put("id_user", idUser);
                         values.put("nama_dompet", namaDompet);

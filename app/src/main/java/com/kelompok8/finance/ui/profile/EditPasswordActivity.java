@@ -53,7 +53,8 @@ public class EditPasswordActivity extends AppCompatActivity {
                     cursor.getString(2),
                     cursor.getString(3),
                     cursor.getString(4),
-                    cursor.getString(5)
+                    cursor.getString(5),
+                    cursor.getString(6)
             );
         }catch (Exception e){
             Log.e("error user", "Error:" + e.getMessage());

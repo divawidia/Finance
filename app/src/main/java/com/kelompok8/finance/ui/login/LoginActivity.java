@@ -71,7 +71,8 @@ public class LoginActivity extends AppCompatActivity {
                             cursor.getString(2),
                             cursor.getString(3),
                             cursor.getString(4),
-                            cursor.getString(5)
+                            cursor.getString(5),
+                            cursor.getString(6)
                     );
                 }catch (Exception e){
                     Toast.makeText(getApplicationContext(), "Nama Depan atau Password salah", Toast.LENGTH_SHORT).show();

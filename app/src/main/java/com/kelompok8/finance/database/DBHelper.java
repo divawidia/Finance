@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
@@ -20,7 +21,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private final Context context;
 
     public DBHelper(Context context) {
-        super(context, "finance.db", null, 1);
+        super(context, "finance.db", null, 2);
         this.context = context;
     }
 
@@ -28,7 +29,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE session(id INTEGER PRIMARY KEY AUTOINCREMENT,username TEXT, password TEXT, login TEXT)");
         db.execSQL("INSERT INTO session(id, login) VALUES(1, 'kosong')");
-        db.execSQL("CREATE TABLE user(id_user INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, username TEXT, password TEXT, tanggal_lahir TEXT, telepon TEXT)");
+        db.execSQL("CREATE TABLE user(id_user INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, username TEXT, password TEXT, tanggal_lahir TEXT, telepon TEXT, foto TEXT)");
         db.execSQL("CREATE TABLE kategori(id_kategori INTEGER PRIMARY KEY AUTOINCREMENT, id_user INTEGER, nama_kategori TEXT, icon TEXT, warna TEXT)");
         db.execSQL("CREATE TABLE dompet(id_dompet INTEGER PRIMARY KEY AUTOINCREMENT, id_user INTEGER, nama_dompet TEXT, saldo_awal INTEGER)");
         db.execSQL("CREATE TABLE pengeluaran(id_pengeluaran INTEGER PRIMARY KEY AUTOINCREMENT, id_kategori INTEGER, id_user INTEGER, jumlah_pengeluaran INTEGER, catatan TEXT, tanggal TEXT)");
@@ -261,13 +262,23 @@ public class DBHelper extends SQLiteOpenHelper {
                 user.setPassword(cursor.getString(3));
                 user.setTanggal_lahir(cursor.getString(4));
                 user.setTelepon(cursor.getString(5));
+                user.setFoto(cursor.getString(6));
             }
         }catch (Exception e){
             user = null;
         }
         return user;
-
     }
+
+//    public boolean checkUsername(String username){
+//        SQLiteDatabase database = this.getReadableDatabase();
+//        long jumlahRows = DatabaseUtils.queryNumEntries(database, "user", "id = ?", new String[]{username});
+//        if (jumlahRows <= 1){
+//            return true;
+//        }else {
+//            return false;
+//        }
+//    }
 
     public User checkPasswordLama(int id, String password){
         User user = null;
