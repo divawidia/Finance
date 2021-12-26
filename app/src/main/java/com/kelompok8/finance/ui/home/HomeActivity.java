@@ -163,7 +163,8 @@ public class HomeActivity extends AppCompatActivity {
                     cursor.getInt(2),
                     cursor.getInt(3),
                     cursor.getString(4),
-                    cursor.getString(5), 0);
+                    cursor.getString(5),
+                    cursor.getInt(6));
             pengeluaranHolder.add(pengeluaran);
         }
 
@@ -174,7 +175,8 @@ public class HomeActivity extends AppCompatActivity {
                     cursor1.getInt(2),
                     cursor1.getInt(3),
                     cursor1.getString(4),
-                    cursor1.getString(5), 0);
+                    cursor1.getString(5),
+                    cursor1.getInt(6));
             pengeluaranHolder2.add(pengeluaran);
         }
 
