@@ -23,13 +23,13 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.kelompok8.finance.AddPengeluaranActivity;
+import com.kelompok8.finance.CategoryActivity;
 import com.kelompok8.finance.R;
 import com.kelompok8.finance.adapter.PengeluaranOneLineAdapter;
 import com.kelompok8.finance.adapter.TransaksiAdapter;
 import com.kelompok8.finance.database.DBHelper;
 import com.kelompok8.finance.model.Pengeluaran;
 import com.kelompok8.finance.ui.home.HomeActivity;
-import com.kelompok8.finance.ui.profile.ProfileActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,8 +38,8 @@ public class StatisticActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewTransaksi;
     private RecyclerView recyclerViewPengeluaran;
-    private ArrayList<Pengeluaran> pengeluaranHolder = new ArrayList<>();
-    private ArrayList<Pengeluaran> pengeluaranHolder2 = new ArrayList<>();
+    private ArrayList<Pengeluaran> pengeluaranHolder;
+    private ArrayList<Pengeluaran> pengeluaranHolder2;
     private SQLiteDatabase sqLiteDatabase;
     private PieChart pieChart;
 
@@ -55,58 +55,14 @@ public class StatisticActivity extends AppCompatActivity {
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(StatisticActivity.this, AddPengeluaranActivity.class));
+                Intent intent = new Intent(StatisticActivity.this, AddPengeluaranActivity.class);
+                intent.putExtra("action", "add");
+                startActivity(intent);
             }
         });
 
         pieChart = findViewById(R.id.chart);
-        setupPieChart();
-        loadPieChartData();
 
-        DBHelper db = new DBHelper(this);
-
-        recyclerViewTransaksi = (RecyclerView) findViewById(R.id.listTransaksi);
-        recyclerViewTransaksi.setLayoutManager(new LinearLayoutManager(this));
-
-        Cursor cursor = new DBHelper(this).readPengeluaran();
-
-        while(cursor.moveToNext()){
-            Pengeluaran pengeluaran = new Pengeluaran(cursor.getInt(0),
-                    cursor.getString(1),
-                    cursor.getInt(2),
-                    cursor.getInt(3),
-                    cursor.getString(4),
-                    cursor.getString(5),
-                    cursor.getInt(6));
-            pengeluaranHolder.add(pengeluaran);
-        }
-
-        TransaksiAdapter pengeluaranAdapter = new TransaksiAdapter(pengeluaranHolder, StatisticActivity.this, sqLiteDatabase);
-        recyclerViewTransaksi.setAdapter((RecyclerView.Adapter) pengeluaranAdapter);
-
-
-        //code spacer
-
-
-        recyclerViewPengeluaran = (RecyclerView) findViewById(R.id.listPengeluaran);
-        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(StatisticActivity.this, LinearLayoutManager.HORIZONTAL, false);
-        recyclerViewPengeluaran.setLayoutManager(horizontalLayoutManagaer);
-
-        Cursor cursor2 = new DBHelper(this).readPengeluaranGByCategory();
-
-        while(cursor2.moveToNext()){
-            Pengeluaran pengeluaran = new Pengeluaran(cursor2.getInt(0),
-                    cursor2.getString(1),
-                    cursor2.getInt(2),
-                    cursor2.getInt(3),
-                    cursor2.getString(4),
-                    cursor2.getString(5),
-                    cursor2.getInt(6));
-            pengeluaranHolder2.add(pengeluaran);
-        }
-
-        PengeluaranOneLineAdapter pengeluaranOneLineAdapter = new PengeluaranOneLineAdapter(pengeluaranHolder2, StatisticActivity.this, sqLiteDatabase);
-        recyclerViewPengeluaran.setAdapter((RecyclerView.Adapter) pengeluaranOneLineAdapter);
     }
 
     private void setupPieChart() {
@@ -159,10 +115,70 @@ public class StatisticActivity extends AppCompatActivity {
 
         pieChart.animateY(1400, Easing.EaseInOutQuad);
     }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        init();
+    }
+
+    private void init(){
+        pengeluaranHolder = new ArrayList<>();
+        pengeluaranHolder2 = new ArrayList<>();
+        setupPieChart();
+        loadPieChartData();
+
+        DBHelper db = new DBHelper(this);
+
+        recyclerViewTransaksi = (RecyclerView) findViewById(R.id.listTransaksi);
+        recyclerViewTransaksi.setLayoutManager(new LinearLayoutManager(this));
+
+        Cursor cursor = new DBHelper(this).readPengeluaran();
+
+        while(cursor.moveToNext()){
+            Pengeluaran pengeluaran = new Pengeluaran(cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getInt(2),
+                    cursor.getInt(3),
+                    cursor.getString(4),
+                    cursor.getString(5),
+                    cursor.getInt(6));
+            pengeluaranHolder.add(pengeluaran);
+        }
+
+        TransaksiAdapter pengeluaranAdapter = new TransaksiAdapter(pengeluaranHolder, StatisticActivity.this, sqLiteDatabase);
+        recyclerViewTransaksi.setAdapter((RecyclerView.Adapter) pengeluaranAdapter);
+
+
+        //code spacer
+
+
+        recyclerViewPengeluaran = (RecyclerView) findViewById(R.id.listPengeluaran);
+        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(StatisticActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerViewPengeluaran.setLayoutManager(horizontalLayoutManagaer);
+
+        Cursor cursor2 = new DBHelper(this).readPengeluaranGByCategory();
+
+        while(cursor2.moveToNext()){
+            Pengeluaran pengeluaran = new Pengeluaran(cursor2.getInt(0),
+                    cursor2.getString(1),
+                    cursor2.getInt(2),
+                    cursor2.getInt(3),
+                    cursor2.getString(4),
+                    cursor2.getString(5),
+                    cursor2.getInt(6));
+            pengeluaranHolder2.add(pengeluaran);
+        }
+
+        PengeluaranOneLineAdapter pengeluaranOneLineAdapter = new PengeluaranOneLineAdapter(pengeluaranHolder2, StatisticActivity.this, sqLiteDatabase);
+        recyclerViewPengeluaran.setAdapter((RecyclerView.Adapter) pengeluaranOneLineAdapter);
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(StatisticActivity.this, HomeActivity.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 }

@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.ColorInt;
@@ -24,8 +26,7 @@ import com.kelompok8.finance.adapter.IconAdapter;
 import com.kelompok8.finance.database.DBHelper;
 import com.kelompok8.finance.helper.IconPickerHelper;
 import com.kelompok8.finance.model.Category;
-import com.kelompok8.finance.ui.home.HomeActivity;
-import com.kelompok8.finance.ui.profile.ProfileActivity;
+import com.kelompok8.finance.ui.stats.StatisticActivity;
 import com.maltaisn.icondialog.IconDialog;
 import com.maltaisn.icondialog.IconDialogSettings;
 import com.maltaisn.icondialog.pack.IconPack;
@@ -39,10 +40,12 @@ public class AddCategoryActivity extends AppCompatActivity implements IconDialog
     private DBHelper db;
     private static final String ICON_DIALOG_TAG = "icon-dialog";
     private String colorString;
-    private Integer iconPath;
+    private Integer iconPath, id;
     private ArrayList<Integer> mIconList;
     private IconAdapter mIconAdapter;
     private int idUser;
+    String action, namaCategoryVal, iconVal, warnaVal;
+    TextView colorTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,20 +86,61 @@ public class AddCategoryActivity extends AppCompatActivity implements IconDialog
 
         EditText namaCategory = findViewById(R.id.categoryInput);
         Button btnSubmit = (Button) findViewById(R.id.button_update);
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                category = new Category(0, idUser,
-                        namaCategory.getText().toString(),
-                        iconPath,
-                        colorString);
+        colorTv = findViewById(R.id.colorLabel);
 
-                saveDataToDB();
+        Intent intent = getIntent();
 
-                Intent intent = new Intent(AddCategoryActivity.this, CategoryActivity.class);
-                startActivity(intent);
-            }
-        });
+        action = intent.getStringExtra("action");
+
+        Log.v("action", action);
+
+        if(action.equals("edit")){
+            btnSubmit.setText("Update");
+            id = Integer.valueOf(intent.getStringExtra("id"));
+            namaCategoryVal = intent.getStringExtra("nama_kategori");
+            iconVal = intent.getStringExtra("icon");
+            warnaVal = intent.getStringExtra("warna");
+
+            namaCategory.setText(namaCategoryVal);
+            selectSpinnerItemByValue(spinnerIcons, Integer.parseInt(iconVal));
+            spectrumPalette.setVisibility(View.GONE);
+            colorTv.setVisibility(View.GONE);
+
+            btnSubmit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    category = new Category(id, idUser,
+                            namaCategory.getText().toString(),
+                            iconPath,
+                            warnaVal);
+
+                    db = new DBHelper(AddCategoryActivity.this);
+                    db.updateKategori(category.getId(),
+                            category.getIdUser(),
+                            category.getNamaKategori(),
+                            category.getIcon(),
+                            category.getWarna());
+
+                    Intent intent = new Intent(AddCategoryActivity.this, CategoryActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }else {
+            btnSubmit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    category = new Category(0, idUser,
+                            namaCategory.getText().toString(),
+                            iconPath,
+                            colorString);
+
+                    saveDataToDB();
+
+                    Intent intent = new Intent(AddCategoryActivity.this, CategoryActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
 
     }
 
@@ -136,10 +180,21 @@ public class AddCategoryActivity extends AppCompatActivity implements IconDialog
         mIconList.add(new Integer(R.drawable.struggle));
         mIconList.add(new Integer(R.drawable.arm));
     }
+
+    public static void selectSpinnerItemByValue(Spinner spnr, int value) {
+        IconAdapter adapter = (IconAdapter) spnr.getAdapter();
+        for (int position = 0; position < adapter.getCount(); position++) {
+            if(adapter.getItem(position) == value) {
+                spnr.setSelection(position);
+                return;
+            }
+        }
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(AddCategoryActivity.this, CategoryActivity.class);
+        Intent intent = new Intent(this, CategoryActivity.class);
         startActivity(intent);
     }
 }

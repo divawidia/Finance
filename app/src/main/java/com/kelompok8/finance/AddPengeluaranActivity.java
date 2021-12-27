@@ -30,7 +30,6 @@ import com.kelompok8.finance.model.Category;
 import com.kelompok8.finance.model.Dompet;
 import com.kelompok8.finance.model.Pengeluaran;
 import com.kelompok8.finance.ui.home.HomeActivity;
-import com.kelompok8.finance.ui.profile.ProfileActivity;
 import com.kelompok8.finance.ui.stats.StatisticActivity;
 
 import java.util.ArrayList;
@@ -54,8 +53,9 @@ public class AddPengeluaranActivity extends AppCompatActivity {
     private ArrayList<Category> mCategoryList;
     private CategorySelectAdapter mCategoryAdapter;
     private int idUser;
-    private Integer dompetId, categoryId;
-    String tanggal;
+    private Integer dompetId, categoryId, id, id_kategori;
+    String tanggal, action, jumlah_pengeluaran, tanggalIntent, catatanIntent;
+    DatePickerDialog datePickerDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +87,6 @@ public class AddPengeluaranActivity extends AppCompatActivity {
         dateInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog datePickerDialog;
                 datePickerDialog = new DatePickerDialog(AddPengeluaranActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int day) {
@@ -146,20 +145,44 @@ public class AddPengeluaranActivity extends AppCompatActivity {
         });
 
         btnSubmit = (Button) findViewById(R.id.button_update);
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pengeluaran = new Pengeluaran(0, "CatGory", idUser,
-                        Integer.parseInt(jumlahUang.getText().toString()),
-                        catatan.getText().toString(),
-                        tanggal, categoryId);
 
-                saveDataToDB();
 
-                Intent intent = new Intent(AddPengeluaranActivity.this, StatisticActivity.class);
-                startActivity(intent);
-            }
-        });
+        Intent intent = getIntent();
+
+        action = intent.getStringExtra("action");
+
+        if(action.equals("edit")){
+            btnSubmit.setText("Update");
+            id = Integer.valueOf(intent.getStringExtra("id"));
+            id_kategori = Integer.valueOf(intent.getStringExtra("id_kategori"));
+            jumlah_pengeluaran = intent.getStringExtra("jumlah_pengeluaran");
+            tanggalIntent = intent.getStringExtra("tanggal");
+            catatanIntent = intent.getStringExtra("catatan");
+
+            jumlahUang.setText(jumlah_pengeluaran);
+            catatan.setText(catatanIntent);
+
+            tanggal = tanggalIntent;
+            dateInput.setText(tanggalIntent);
+
+            selectSpinnerItemByValue(spinnerCategories, id_kategori);
+        }else {
+            btnSubmit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    pengeluaran = new Pengeluaran(0, "CatGory", idUser,
+                            Integer.parseInt(jumlahUang.getText().toString()),
+                            catatan.getText().toString(),
+                            tanggal, categoryId);
+
+                    saveDataToDB();
+
+                    Intent intent = new Intent(AddPengeluaranActivity.this, StatisticActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
+
     }
 
     private void saveDataToDB(){
@@ -170,10 +193,22 @@ public class AddPengeluaranActivity extends AppCompatActivity {
                 pengeluaran.getCatatan(),
                 pengeluaran.getTanggal());
     }
+
+    public static void selectSpinnerItemByValue(Spinner spnr, int value) {
+        CategorySelectAdapter adapter = (CategorySelectAdapter) spnr.getAdapter();
+        for (int position = 0; position < adapter.getCount(); position++) {
+            if(adapter.getItem(position).getId() == value) {
+                spnr.setSelection(position);
+                return;
+            }
+        }
+    }
+
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(AddPengeluaranActivity.this, StatisticActivity.class);
+        Intent intent = new Intent(this, StatisticActivity.class);
         startActivity(intent);
     }
 }

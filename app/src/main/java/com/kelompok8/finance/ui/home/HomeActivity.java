@@ -43,12 +43,14 @@ public class HomeActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewPengeluaran, recyclerViewTransaksi, recyclerViewDompet;
     private SQLiteDatabase sqLiteDatabase;
-    private ArrayList<Pengeluaran> pengeluaranHolder = new ArrayList<>();
-    private ArrayList<Pengeluaran> pengeluaranHolder2 = new ArrayList<>();
-    private ArrayList<Dompet> dompetHolder = new ArrayList<>();
+    private ArrayList<Pengeluaran> pengeluaranHolder;
+    private ArrayList<Pengeluaran> pengeluaranHolder2;
+    private ArrayList<Dompet> dompetHolder;
     private User user;
     private DBHelper dbHelper;
     private Uri imageUri;
+    TextView emptyPengeluaran;
+    TextView emptyTransaksi;
 
     int idUser;
 
@@ -82,8 +84,8 @@ public class HomeActivity extends AppCompatActivity {
 
         TextView pengeluaranShow = findViewById(R.id.pengeluaranShowAll);
         TextView transaksiShow = findViewById(R.id.transaksiShowAll);
-        TextView emptyPengeluaran = findViewById(R.id.pengeluaranNull);
-        TextView emptyTransaksi = findViewById(R.id.transaksiNull);
+        emptyPengeluaran = findViewById(R.id.pengeluaranNull);
+        emptyTransaksi = findViewById(R.id.transaksiNull);
         fotoProfile = findViewById(R.id.profile_image);
 
         TextView username = findViewById(R.id.textUsernameHome);
@@ -135,6 +137,20 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
             }
         });
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        init();
+    }
+
+    public void init(){
+
+        pengeluaranHolder = new ArrayList<>();
+        pengeluaranHolder2 = new ArrayList<>();
+        dompetHolder = new ArrayList<>();
 
         recyclerViewPengeluaran = (RecyclerView) findViewById(R.id.listPengeluaran);
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL, false);
