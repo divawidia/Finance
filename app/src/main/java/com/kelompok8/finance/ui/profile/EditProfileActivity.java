@@ -23,6 +23,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ import com.kelompok8.finance.LoginManager;
 import com.kelompok8.finance.R;
 import com.kelompok8.finance.database.DBHelper;
 import com.kelompok8.finance.model.User;
+import com.kelompok8.finance.ui.home.HomeActivity;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -76,6 +78,7 @@ public class EditProfileActivity extends AppCompatActivity {
         Button simpan = findViewById(R.id.btnSimpanProfile);
         Button addDate = findViewById(R.id.addClockActivity);
         fotoProfile = findViewById(R.id.profile_image);
+        ImageView btnBack = findViewById(R.id.ic_backProfile);
 
         idUser = this.getSharedPreferences("login_session", 0).getInt("key_id", 0);
         dbHelper = new DBHelper(this);
@@ -140,6 +143,13 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 imagePickDialog();
+            }
+        });
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent home = new Intent(EditProfileActivity.this, ProfileActivity.class);
+                startActivity(home);
             }
         });
 

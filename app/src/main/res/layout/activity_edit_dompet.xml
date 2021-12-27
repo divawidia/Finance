@@ -10,6 +10,32 @@
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintVertical_bias="0.0"
     android:background="#EDEDED">
+    <ImageView
+        android:id="@+id/ic_backHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/arrow_left"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"/>
+
+    <TextView
+        android:id="@+id/textHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="Home"
+        android:textSize="18sp"
+        android:fontFamily="@font/poppins_bold"
+        android:textColor="@color/black"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@+id/ic_backHome"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ic_backHome"/>
     <TextView
         android:id="@+id/walletName"
         android:layout_width="wrap_content"
@@ -18,12 +44,13 @@
         android:textColor="@color/black"
         android:layout_marginStart="17dp"
         android:textSize="14sp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="76dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textHome"/>
 
     <EditText
         android:id="@+id/editNamaDompet"

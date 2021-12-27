@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.kelompok8.finance.LoginManager;
@@ -38,6 +39,7 @@ public class EditPasswordActivity extends AppCompatActivity {
         EditText editPassLama = findViewById(R.id.editTextPasswordlama);
         EditText editPassBaru = findViewById(R.id.editTextPasswordbaru);
         EditText editPassKonfirm = findViewById(R.id.editTextKonfirmasipassword);
+        ImageView btnBack = findViewById(R.id.ic_backProfile);
 
         Button simpan = findViewById(R.id.btnSimpanPassword);
 
@@ -60,6 +62,13 @@ public class EditPasswordActivity extends AppCompatActivity {
             Log.e("error user", "Error:" + e.getMessage());
             return;
         }
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent home = new Intent(EditPasswordActivity.this, ProfileActivity.class);
+                startActivity(home);
+            }
+        });
 
         simpan.setOnClickListener(new View.OnClickListener() {
             @Override

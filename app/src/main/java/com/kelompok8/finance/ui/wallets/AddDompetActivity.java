@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -43,6 +44,7 @@ public class AddDompetActivity extends AppCompatActivity {
 
         EditText editNamaDompet = findViewById(R.id.descInput);
         EditText editJumlahSaldo = findViewById(R.id.jumlahInput);
+        ImageView btnBack = findViewById(R.id.ic_backHome);
 
         Button buttonAdd = findViewById(R.id.buttonAddWallet);
 
@@ -65,6 +67,13 @@ public class AddDompetActivity extends AppCompatActivity {
             Log.e("error user", "Error:" + e.getMessage());
             return;
         }
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent home = new Intent(AddDompetActivity.this, HomeActivity.class);
+                startActivity(home);
+            }
+        });
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
