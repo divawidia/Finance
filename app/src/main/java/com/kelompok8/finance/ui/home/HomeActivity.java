@@ -60,7 +60,6 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        getSupportActionBar().hide();
 
         idUser = this.getSharedPreferences("login_session", 0).getInt("key_id", 0);
         dbHelper = new DBHelper(this);
