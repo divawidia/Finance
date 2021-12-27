@@ -29,6 +29,8 @@ import com.kelompok8.finance.database.DBHelper;
 import com.kelompok8.finance.model.Category;
 import com.kelompok8.finance.model.Dompet;
 import com.kelompok8.finance.model.Pengeluaran;
+import com.kelompok8.finance.ui.home.HomeActivity;
+import com.kelompok8.finance.ui.profile.ProfileActivity;
 import com.kelompok8.finance.ui.stats.StatisticActivity;
 
 import java.util.ArrayList;
@@ -167,5 +169,11 @@ public class AddPengeluaranActivity extends AppCompatActivity {
                 pengeluaran.getJumlahPengeluaran(),
                 pengeluaran.getCatatan(),
                 pengeluaran.getTanggal());
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(AddPengeluaranActivity.this, StatisticActivity.class);
+        startActivity(intent);
     }
 }

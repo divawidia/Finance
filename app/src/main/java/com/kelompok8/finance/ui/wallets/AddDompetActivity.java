@@ -113,4 +113,10 @@ public class AddDompetActivity extends AppCompatActivity {
         });
 
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(AddDompetActivity.this, HomeActivity.class);
+        startActivity(intent);
+    }
 }

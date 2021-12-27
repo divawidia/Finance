@@ -24,6 +24,8 @@ import com.kelompok8.finance.adapter.IconAdapter;
 import com.kelompok8.finance.database.DBHelper;
 import com.kelompok8.finance.helper.IconPickerHelper;
 import com.kelompok8.finance.model.Category;
+import com.kelompok8.finance.ui.home.HomeActivity;
+import com.kelompok8.finance.ui.profile.ProfileActivity;
 import com.maltaisn.icondialog.IconDialog;
 import com.maltaisn.icondialog.IconDialogSettings;
 import com.maltaisn.icondialog.pack.IconPack;
@@ -133,5 +135,11 @@ public class AddCategoryActivity extends AppCompatActivity implements IconDialog
         mIconList.add(new Integer(R.drawable.training));
         mIconList.add(new Integer(R.drawable.struggle));
         mIconList.add(new Integer(R.drawable.arm));
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(AddCategoryActivity.this, CategoryActivity.class);
+        startActivity(intent);
     }
 }

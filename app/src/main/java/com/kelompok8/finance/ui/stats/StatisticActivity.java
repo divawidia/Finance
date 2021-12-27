@@ -28,6 +28,8 @@ import com.kelompok8.finance.adapter.PengeluaranOneLineAdapter;
 import com.kelompok8.finance.adapter.TransaksiAdapter;
 import com.kelompok8.finance.database.DBHelper;
 import com.kelompok8.finance.model.Pengeluaran;
+import com.kelompok8.finance.ui.home.HomeActivity;
+import com.kelompok8.finance.ui.profile.ProfileActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -156,5 +158,11 @@ public class StatisticActivity extends AppCompatActivity {
         pieChart.invalidate();
 
         pieChart.animateY(1400, Easing.EaseInOutQuad);
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(StatisticActivity.this, HomeActivity.class);
+        startActivity(intent);
     }
 }

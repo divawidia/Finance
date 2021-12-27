@@ -22,14 +22,14 @@ public class DBHelper extends SQLiteOpenHelper {
     private final Context context;
 
     public DBHelper(Context context) {
-        super(context, "finance.db", null, 2);
+        super(context, "finance.db", null, 4);
         this.context = context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE session(id INTEGER PRIMARY KEY AUTOINCREMENT,username TEXT, password TEXT, login TEXT)");
-        db.execSQL("INSERT INTO session(id, login) VALUES(1, 'kosong')");
+//        db.execSQL("CREATE TABLE session(id INTEGER PRIMARY KEY AUTOINCREMENT,username TEXT, password TEXT, login TEXT)");
+//        db.execSQL("INSERT INTO session(id, login) VALUES(1, 'kosong')");
         db.execSQL("CREATE TABLE user(id_user INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, username TEXT, password TEXT, tanggal_lahir TEXT, telepon TEXT, foto TEXT)");
         db.execSQL("CREATE TABLE kategori(id_kategori INTEGER PRIMARY KEY AUTOINCREMENT, id_user INTEGER, nama_kategori TEXT, icon TEXT, warna TEXT)");
         db.execSQL("CREATE TABLE dompet(id_dompet INTEGER PRIMARY KEY AUTOINCREMENT, id_user INTEGER, nama_dompet TEXT, saldo_awal INTEGER)");
@@ -38,7 +38,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS finance.db");
+        db.execSQL("DROP TABLE IF EXISTS user");
+        db.execSQL("DROP TABLE IF EXISTS kategori");
+        db.execSQL("DROP TABLE IF EXISTS dompet");
+        db.execSQL("DROP TABLE IF EXISTS pengeluaran");
         onCreate(db);
     }
 

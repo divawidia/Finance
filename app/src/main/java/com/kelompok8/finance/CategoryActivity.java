@@ -68,4 +68,10 @@ public class CategoryActivity extends AppCompatActivity {
         CategoryAdapter categoryAdapter = new CategoryAdapter(kategoriHolder, CategoryActivity.this, sqLiteDatabase);
         recyclerViewKategori.setAdapter((RecyclerView.Adapter) categoryAdapter);
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(CategoryActivity.this, AddPengeluaranActivity.class);
+        startActivity(intent);
+    }
 }

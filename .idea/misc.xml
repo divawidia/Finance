@@ -7,30 +7,22 @@
         <entry key="..\:/Finance/app/src/main/res/layout/login.xml" value="0.10914855072463768" />
         <entry key="..\:/Finance/app/src/main/res/layout/register.xml" value="0.1" />
         <entry key="..\:/Github/Finance/app/src/main/res/drawable/custom_input.xml" value="0.1" />
-        <entry key="..\:/Github/Finance/app/src/main/res/layout/activity_add_category.xml" value="0.136" />
-        <entry key="..\:/Github/Finance/app/src/main/res/layout/activity_add_dompet.xml" value="0.1105072463768116" />
-        <entry key="..\:/Github/Finance/app/src/main/res/layout/activity_add_pengeluaran.xml" value="0.16" />
+        <entry key="..\:/Github/Finance/app/src/main/res/layout/activity_add_category.xml" value="0.4" />
+        <entry key="..\:/Github/Finance/app/src/main/res/layout/activity_add_pengeluaran.xml" value="0.1" />
         <entry key="..\:/Github/Finance/app/src/main/res/layout/activity_edit_password.xml" value="0.15" />
         <entry key="..\:/Github/Finance/app/src/main/res/layout/activity_edit_profile.xml" value="0.15" />
         <entry key="..\:/Github/Finance/app/src/main/res/layout/activity_home.xml" value="0.23007246376811594" />
-        <entry key="..\:/Github/Finance/app/src/main/res/layout/activity_layout.xml" value="0.1105072463768116" />
         <entry key="..\:/Github/Finance/app/src/main/res/layout/activity_list_category.xml" value="0.1" />
         <entry key="..\:/Github/Finance/app/src/main/res/layout/activity_main.xml" value="0.2" />
-        <entry key="..\:/Github/Finance/app/src/main/res/layout/activity_profile.xml" value="0.1" />
         <entry key="..\:/Github/Finance/app/src/main/res/layout/activity_statistic.xml" value="0.15" />
         <entry key="..\:/Github/Finance/app/src/main/res/layout/item_category.xml" value="0.1" />
         <entry key="..\:/Github/Finance/app/src/main/res/layout/item_category_add.xml" value="0.536" />
-        <entry key="..\:/Github/Finance/app/src/main/res/layout/item_category_icon.xml" value="0.4" />
-        <entry key="..\:/Github/Finance/app/src/main/res/layout/item_category_logo.xml" value="0.1105072463768116" />
-        <entry key="..\:/Github/Finance/app/src/main/res/layout/item_category_select.xml" value="0.264" />
-        <entry key="..\:/Github/Finance/app/src/main/res/layout/item_dompet.xml" value="0.136" />
-        <entry key="..\:/Github/Finance/app/src/main/res/layout/item_dompet_select.xml" value="0.1105072463768116" />
+        <entry key="..\:/Github/Finance/app/src/main/res/layout/item_dompet.xml" value="0.1" />
         <entry key="..\:/Github/Finance/app/src/main/res/layout/item_pengeluaran.xml" value="0.264" />
         <entry key="..\:/Github/Finance/app/src/main/res/layout/item_pengeluaran_one_line.xml" value="0.4" />
-        <entry key="..\:/Github/Finance/app/src/main/res/layout/item_transaksi.xml" value="0.2698961937716263" />
+        <entry key="..\:/Github/Finance/app/src/main/res/layout/item_transaksi.xml" value="0.536" />
         <entry key="..\:/Github/Finance/app/src/main/res/layout/login.xml" value="0.15" />
         <entry key="..\:/Github/Finance/app/src/main/res/layout/profile_fragment.xml" value="0.15" />
-        <entry key="..\:/Github/Finance/app/src/main/res/layout/register.xml" value="0.1" />
         <entry key="..\:/Github/Finance/app/src/main/res/layout/wallets_fragment.xml" value="0.23007246376811594" />
         <entry key="..\:/Mobile/FinanceApp/app/src/main/res/layout/activity_add_pengeluaran.xml" value="0.2" />
         <entry key="..\:/Users/wiart/AndroidStudioProjects/Finance/app/src/main/res/drawable/bg_login.xml" value="0.23958333333333334" />
@@ -62,6 +54,29 @@
         <entry key="..\:/Users/wiart/AndroidStudioProjects/Finance/app/src/main/res/layout/statistic_fragment.xml" value="0.20199275362318841" />
         <entry key="..\:/Users/wiart/AndroidStudioProjects/Finance/app/src/main/res/layout/wallets_fragment.xml" value="0.20199275362318841" />
         <entry key="..\:/Users/wiart/AndroidStudioProjects/Finance/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2234375" />
+        <entry key="..\:/Users/wiart/StudioProjects/Finance/app/src/main/res/drawable/bg_login.xml" value="0.23958333333333334" />
+        <entry key="..\:/Users/wiart/StudioProjects/Finance/app/src/main/res/drawable/circle_background.xml" value="0.23958333333333334" />
+        <entry key="..\:/Users/wiart/StudioProjects/Finance/app/src/main/res/drawable/custom_input.xml" value="0.23958333333333334" />
+        <entry key="..\:/Users/wiart/StudioProjects/Finance/app/src/main/res/drawable/dompetku_card_background.xml" value="0.2359375" />
+        <entry key="..\:/Users/wiart/StudioProjects/Finance/app/src/main/res/drawable/edt_login.xml" value="0.23958333333333334" />
+        <entry key="..\:/Users/wiart/StudioProjects/Finance/app/src/main/res/drawable/ic_baseline_date_range_24.xml" value="0.23958333333333334" />
+        <entry key="..\:/Users/wiart/StudioProjects/Finance/app/src/main/res/drawable/ic_calendar.xml" value="0.23958333333333334" />
+        <entry key="..\:/Users/wiart/StudioProjects/Finance/app/src/main/res/layout/activity_add_category.xml" value="0.1598731884057971" />
+        <entry key="..\:/Users/wiart/StudioProjects/Finance/app/src/main/res/layout/activity_add_dompet.xml" value="0.25" />
+        <entry key="..\:/Users/wiart/StudioProjects/Finance/app/src/main/res/layout/activity_add_pengeluaran.xml" value="0.1766304347826087" />
+        <entry key="..\:/Users/wiart/StudioProjects/Finance/app/src/main/res/layout/activity_edit_dompet.xml" value="0.25" />
+        <entry key="..\:/Users/wiart/StudioProjects/Finance/app/src/main/res/layout/activity_edit_password.xml" value="0.33" />
+        <entry key="..\:/Users/wiart/StudioProjects/Finance/app/src/main/res/layout/activity_edit_profile.xml" value="0.33" />
+        <entry key="..\:/Users/wiart/StudioProjects/Finance/app/src/main/res/layout/activity_home.xml" value="0.25" />
+        <entry key="..\:/Users/wiart/StudioProjects/Finance/app/src/main/res/layout/activity_layout.xml" value="0.22" />
+        <entry key="..\:/Users/wiart/StudioProjects/Finance/app/src/main/res/layout/activity_profile.xml" value="0.33" />
+        <entry key="..\:/Users/wiart/StudioProjects/Finance/app/src/main/res/layout/item_category_add.xml" value="0.1598731884057971" />
+        <entry key="..\:/Users/wiart/StudioProjects/Finance/app/src/main/res/layout/item_dompet.xml" value="0.25" />
+        <entry key="..\:/Users/wiart/StudioProjects/Finance/app/src/main/res/layout/item_pengeluaran.xml" value="0.22" />
+        <entry key="..\:/Users/wiart/StudioProjects/Finance/app/src/main/res/layout/item_pengeluaran_one_line.xml" value="0.1598731884057971" />
+        <entry key="..\:/Users/wiart/StudioProjects/Finance/app/src/main/res/layout/item_transaksi.xml" value="0.25" />
+        <entry key="..\:/Users/wiart/StudioProjects/Finance/app/src/main/res/layout/login.xml" value="0.22" />
+        <entry key="..\:/Users/wiart/StudioProjects/Finance/app/src/main/res/layout/register.xml" value="0.22" />
       </map>
     </option>
   </component>

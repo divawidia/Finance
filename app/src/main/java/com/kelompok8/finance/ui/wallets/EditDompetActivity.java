@@ -155,4 +155,10 @@ public class EditDompetActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(EditDompetActivity.this, HomeActivity.class);
+        startActivity(intent);
+    }
 }
