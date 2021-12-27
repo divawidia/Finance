@@ -104,7 +104,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public void deletePengeluaran(Integer id) {
+    public void deletePengeluaran(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         if(db.delete("pengeluaran", "id_pengeluaran" + "=" + id, null) > 0){
             Toasty.success(context, "Delete Success", Toast.LENGTH_SHORT, true).show();
@@ -167,7 +167,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return arrayList;
     }
 
-    public void deleteKategori(Integer id) {
+    public void deleteKategori(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         if(db.delete("kategori", "id_kategori" + "=" + id, null) > 0){
             Toasty.success(context, "Delete Success", Toast.LENGTH_SHORT, true).show();
@@ -176,7 +176,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void updateKategori (Integer id, Integer id_user, String nama_kategori, String icon, String warna){
+    public void updateKategori (Integer id, Integer id_user, String nama_kategori, Integer icon, String warna){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("id_user", id_user);

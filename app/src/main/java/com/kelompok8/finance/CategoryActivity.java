@@ -27,7 +27,7 @@ import java.util.ArrayList;
 
 public class CategoryActivity extends AppCompatActivity {
     private RecyclerView recyclerViewKategori;
-    private ArrayList<Category> kategoriHolder = new ArrayList<>();
+    private ArrayList<Category> kategoriHolder;
     private SQLiteDatabase sqLiteDatabase;
     private int idUser;
 
@@ -45,16 +45,22 @@ public class CategoryActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(CategoryActivity.this, AddCategoryActivity.class));
+                Intent intent = new Intent(CategoryActivity.this, AddCategoryActivity.class);
+                intent.putExtra("action", "add");
+                startActivity(intent);
             }
         });
+    }
 
+    private void init(){
         DBHelper db = new DBHelper(this);
 
         recyclerViewKategori = (RecyclerView) findViewById(R.id.listPengeluaran);
         recyclerViewKategori.setLayoutManager(new GridLayoutManager(this, 4));
 
         Cursor cursor = new DBHelper(this).readKategori(idUser);
+
+        ArrayList<Category> kategoriHolder = new ArrayList<>();
 
         while(cursor.moveToNext()){
             Category category = new Category(cursor.getInt(0),
@@ -67,5 +73,19 @@ public class CategoryActivity extends AppCompatActivity {
 
         CategoryAdapter categoryAdapter = new CategoryAdapter(kategoriHolder, CategoryActivity.this, sqLiteDatabase);
         recyclerViewKategori.setAdapter((RecyclerView.Adapter) categoryAdapter);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        init();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this, AddPengeluaranActivity.class);
+        intent.putExtra("action", "add");
+        startActivity(intent);
     }
 }

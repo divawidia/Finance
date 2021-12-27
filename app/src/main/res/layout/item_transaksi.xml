@@ -11,7 +11,7 @@
         app:cardCornerRadius="8dp"
         android:layout_marginTop="6dp"
         android:layout_marginBottom="6dp"
-        android:id="@+id/data_vaksin"
+        android:id="@+id/sectionId"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
