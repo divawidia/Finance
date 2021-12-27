@@ -78,6 +78,7 @@ public class AddPengeluaranActivity extends AppCompatActivity {
         });
 
 
+        db = new DBHelper(this);
 
         Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
@@ -166,6 +167,28 @@ public class AddPengeluaranActivity extends AppCompatActivity {
             dateInput.setText(tanggalIntent);
 
             selectSpinnerItemByValue(spinnerCategories, id_kategori);
+
+
+            btnSubmit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    pengeluaran = new Pengeluaran(id, "CatGory", idUser,
+                            Integer.parseInt(jumlahUang.getText().toString()),
+                            catatan.getText().toString(),
+                            tanggal, categoryId);
+
+
+                    db.updatePengeluaran(pengeluaran.getId(),
+                            pengeluaran.getIdCategory(),
+                            pengeluaran.getIdUser(),
+                            pengeluaran.getJumlahPengeluaran(),
+                            pengeluaran.getCatatan(),
+                            pengeluaran.getTanggal());
+
+                    Intent intent = new Intent(AddPengeluaranActivity.this, StatisticActivity.class);
+                    startActivity(intent);
+                }
+            });
         }else {
             btnSubmit.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -186,7 +209,6 @@ public class AddPengeluaranActivity extends AppCompatActivity {
     }
 
     private void saveDataToDB(){
-        db = new DBHelper(this);
         db.insertPengeluaran(pengeluaran.getIdCategory(),
                 pengeluaran.getIdUser(),
                 pengeluaran.getJumlahPengeluaran(),
@@ -203,7 +225,6 @@ public class AddPengeluaranActivity extends AppCompatActivity {
             }
         }
     }
-
 
     @Override
     public void onBackPressed() {

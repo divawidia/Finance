@@ -7,6 +7,8 @@
         android:id="@+id/iconView"
         android:layout_width="150dp"
         android:layout_height="100dp"
-        android:src="@drawable/focus" />
+        android:src="@drawable/focus"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
 
 </RelativeLayout>

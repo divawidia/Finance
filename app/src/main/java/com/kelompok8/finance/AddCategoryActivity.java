@@ -3,8 +3,11 @@ package com.kelompok8.finance;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -51,6 +54,10 @@ public class AddCategoryActivity extends AppCompatActivity implements IconDialog
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_category);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00903D")));
+        getSupportActionBar().setTitle("Tambah Kategori");
 
         IconDialog dialog = (IconDialog) getSupportFragmentManager().findFragmentByTag(ICON_DIALOG_TAG);
         IconDialog iconDialog = dialog != null ? dialog
@@ -179,6 +186,13 @@ public class AddCategoryActivity extends AppCompatActivity implements IconDialog
         mIconList.add(new Integer(R.drawable.training));
         mIconList.add(new Integer(R.drawable.struggle));
         mIconList.add(new Integer(R.drawable.arm));
+        mIconList.add(new Integer(R.drawable.color));
+        mIconList.add(new Integer(R.drawable.flute));
+        mIconList.add(new Integer(R.drawable.mortarboard));
+        mIconList.add(new Integer(R.drawable.school));
+        mIconList.add(new Integer(R.drawable.book));
+        mIconList.add(new Integer(R.drawable.puzzle));
+        mIconList.add(new Integer(R.drawable.strong));
     }
 
     public static void selectSpinnerItemByValue(Spinner spnr, int value) {
@@ -197,4 +211,15 @@ public class AddCategoryActivity extends AppCompatActivity implements IconDialog
         Intent intent = new Intent(this, CategoryActivity.class);
         startActivity(intent);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return false;
+    }
+
 }

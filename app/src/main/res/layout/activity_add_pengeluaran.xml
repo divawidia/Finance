@@ -39,7 +39,7 @@
             android:layout_marginTop="8dp"
             android:background="@drawable/custom_input"
             android:hint="Rp. 0"
-            android:inputType="text"
+            android:inputType="number"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
             android:textSize="16sp"

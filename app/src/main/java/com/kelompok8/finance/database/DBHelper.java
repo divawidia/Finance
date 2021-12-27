@@ -113,11 +113,12 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void updatePengeluaran (Integer id, Integer id_kategori, Integer id_user, Integer jumlah_pengeluaran, String tanggal){
+    public void updatePengeluaran (Integer id, Integer id_kategori, Integer id_user, Integer jumlah_pengeluaran, String catatan, String tanggal){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("id_kategori", id_kategori);
         contentValues.put("id_user", id_user);
+        contentValues.put("catatan", catatan);
         contentValues.put("jumlah_pengeluaran", jumlah_pengeluaran);
         contentValues.put("tanggal", tanggal);
         if(db.update("pengeluaran", contentValues, "id_pengeluaran" + "=" + id, null) > 0){
