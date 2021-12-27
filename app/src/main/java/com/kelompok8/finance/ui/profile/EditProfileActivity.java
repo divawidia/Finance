@@ -175,36 +175,18 @@ public class EditProfileActivity extends AppCompatActivity {
                     editTglLahir.requestFocus();
                     editTelepon.setError("Email harus diisi!");
                 }else {
+                    ContentValues values =new ContentValues();
+                    values.put("username", username);
+                    values.put("email", email);
+                    values.put("tanggal_lahir", tglLahir);
+                    values.put("telepon", telepon);
+                    values.put("foto", String.valueOf(imageUri));
+                    dbHelper.updateUser(values, idUser);
 
-//                    User currentUser = dbHelper.findUser(user.getIdUser());
-//                    User check = dbHelper.checkLogin(username, user.getPassword());
-//
-//                    if (check == null){
-                        ContentValues values =new ContentValues();
-                        values.put("username", username);
-                        values.put("email", email);
-                        values.put("tanggal_lahir", tglLahir);
-                        values.put("telepon", telepon);
-                        values.put("foto", String.valueOf(imageUri));
-                        dbHelper.updateUser(values, idUser);
+                    Toast.makeText(EditProfileActivity.this, "Profile berhasil diubah", Toast.LENGTH_SHORT).show();
 
-                        Toast.makeText(EditProfileActivity.this, "Profile berhasil diubah", Toast.LENGTH_SHORT).show();
-
-                        Intent intent = new Intent(EditProfileActivity.this, ProfileActivity.class);
-                        startActivity(intent);
-//                    }
-//                    else {
-//                        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-//                        builder.setTitle("Error");
-//                        builder.setMessage("Change profile error");
-//                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialogInterface, int i) {
-//                                dialogInterface.cancel();
-//                            }
-//                        });
-//                        builder.show();
-//                    }
+                    Intent intent = new Intent(EditProfileActivity.this, ProfileActivity.class);
+                    startActivity(intent);
                 }
             }
         });

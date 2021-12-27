@@ -103,7 +103,7 @@ public class EditDompetActivity extends AppCompatActivity {
                 } else {
                     Dompet check = dbHelper.checkNamaDompet(idUser, namaDompet);
 
-                    if (check != null) {
+                    if (check == null) {
                         ContentValues values = new ContentValues();
                         values.put("id_user", idUser);
                         values.put("nama_dompet", namaDompet);
