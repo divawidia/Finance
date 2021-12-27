@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -45,6 +46,7 @@ public class ProfileActivity extends AppCompatActivity {
         TextView username = findViewById(R.id.textUsername);
         TextView email = findViewById(R.id.textEmail);
         fotoProfile = findViewById(R.id.profile_image);
+        ImageView btnBack = findViewById(R.id.ic_backProfile);
 
         idUser = this.getSharedPreferences("login_session", 0).getInt("key_id", 0);
         dbHelper = new DBHelper(this);
@@ -91,6 +93,13 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent2 = new Intent(ProfileActivity.this, EditPasswordActivity.class);
                 startActivity(intent2);
+            }
+        });
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent home = new Intent(ProfileActivity.this, HomeActivity.class);
+                startActivity(home);
             }
         });
 

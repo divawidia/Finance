@@ -55,7 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String strUsername = username.getText().toString();
                 String strPassword = password.getText().toString();
                 Boolean daftar = db.insertUser(strEmail, strUsername, strPassword);
-                if (daftar == true){
+                if (daftar){
                     Toast.makeText(getApplicationContext(), "Pendaftaran berhasil", Toast.LENGTH_SHORT).show();
                     Intent loginIntent = new Intent (RegisterActivity.this, LoginActivity.class);
                     startActivity(loginIntent);

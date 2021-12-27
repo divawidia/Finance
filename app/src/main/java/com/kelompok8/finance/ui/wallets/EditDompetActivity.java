@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.kelompok8.finance.R;
@@ -43,6 +44,8 @@ public class EditDompetActivity extends AppCompatActivity {
 
         Button buttonEdit = findViewById(R.id.buttonEditWallet);
         Button buttonDelete = findViewById(R.id.buttonDeleteWallet);
+
+        ImageView btnBack = findViewById(R.id.ic_backHome);
 
         Intent intent = getIntent();
         idDompet = intent.getExtras().getInt("id_dompet");
@@ -127,6 +130,14 @@ public class EditDompetActivity extends AppCompatActivity {
             }
         });
 
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent home = new Intent(EditDompetActivity.this, HomeActivity.class);
+                startActivity(home);
+            }
+        });
+
         buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -154,5 +165,11 @@ public class EditDompetActivity extends AppCompatActivity {
                 builder.show();
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(EditDompetActivity.this, HomeActivity.class);
+        startActivity(intent);
     }
 }

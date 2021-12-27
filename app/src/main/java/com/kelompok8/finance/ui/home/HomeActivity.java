@@ -1,6 +1,8 @@
 package com.kelompok8.finance.ui.home;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,9 +16,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.Group;
+import androidx.core.view.GravityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.kelompok8.finance.MainActivity;
 import com.kelompok8.finance.R;
 import com.kelompok8.finance.adapter.DompetAdapter;
 import com.kelompok8.finance.adapter.PengeluaranAdapter;
@@ -205,5 +209,36 @@ public class HomeActivity extends AppCompatActivity {
 
         TransaksiAdapter transaksiAdapter = new TransaksiAdapter(pengeluaranHolder, HomeActivity.this, sqLiteDatabase);
         recyclerViewTransaksi.setAdapter((RecyclerView.Adapter) transaksiAdapter);
+    }
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+        // Set title dialog
+        alertDialogBuilder.setTitle("Kamu yakin mau keluar dari aplikasi?");
+
+        // Set pesan dari dialog
+        alertDialogBuilder
+                .setMessage("Pilih Ya jika ingin keluar dari aplikasi")
+                .setIcon(R.mipmap.ic_launcher)
+                .setCancelable(false)
+                .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        // Jika tombol diklik, maka akan menutup activity ini
+                        HomeActivity.this.finishAffinity();
+                    }
+                })
+                .setNegativeButton("Batal",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // Jika tombol ini diklik, akan menutup dialog
+                        dialog.cancel();
+                    }
+                });
+
+        // Membuat alert dialog dari builder
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // Menampilkan alert dialog
+        alertDialog.show();
     }
 }
