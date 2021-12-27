@@ -38,6 +38,7 @@ public class EditDompetActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_dompet);
+        getSupportActionBar().hide();
 
         EditText editNamaDompet = findViewById(R.id.editNamaDompet);
         EditText editJumlahSaldo = findViewById(R.id.editJumlahDompet);

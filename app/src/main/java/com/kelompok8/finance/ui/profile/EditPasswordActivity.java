@@ -35,6 +35,7 @@ public class EditPasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_password);
+        getSupportActionBar().hide();
 
         EditText editPassLama = findViewById(R.id.editTextPasswordlama);
         EditText editPassBaru = findViewById(R.id.editTextPasswordbaru);

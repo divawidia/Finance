@@ -70,6 +70,7 @@ public class EditProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
+        getSupportActionBar().hide();
 
         EditText editTglLahir = findViewById(R.id.editTextTglLahir);
         EditText editEmail = findViewById(R.id.editTextEmail);

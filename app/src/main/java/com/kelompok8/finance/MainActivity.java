@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splashscreen);
+        getSupportActionBar().hide();
+
         LoginManager session = new LoginManager();
 
         Handler handler = new Handler();
